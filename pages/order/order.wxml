@@ -1,0 +1,43 @@
+<!--pages/order/order.wxml-->
+<view class='con' wx:for='{{msg}}' wx:key="{{index}}">
+  <image class='con-banner' src='{{item.img_url}}'></image>
+  <view class='con-tit'>
+    <view>奖品：{{item.title}}</view>
+    <view><text>￥</text>{{item.price}}</view>
+  </view>
+  <view class='con-status'>
+
+    <block wx:if="{{item.status == 1}}">
+      <view>状态：未付款</view>
+      <navigator url='../confirmOrder/confirmOrder?id={{item.id}}&formId={{item.pay_id}}'>
+        去付款
+        <image src='../../image/me-arrow.png'></image>
+      </navigator>
+    </block> 
+
+    <block wx:if="{{item.status == 2}}">
+      <view>状态：待发货</view>
+    </block> 
+
+    <block wx:if="{{item.status == 3}}">
+      <view>状态：已发货</view>
+    </block> 
+
+    <block wx:if="{{item.status == 4}}">
+      <view>状态：已失效</view>
+    </block> 
+
+    <block wx:if="{{item.status == 5 || item.status == 0 }}">
+      <view>状态：待确认</view>
+      <navigator url='../confirmOrder/confirmOrder?id={{item.id}}&formId={{item.pay_id}}'>
+        去确认
+        <image src='../../image/me-arrow.png'></image>
+      </navigator>
+    </block> 
+
+  </view>
+</view>
+
+<view class='noMsg' wx:if="{{msg == ''}}">
+  当前没有订单数据...
+</view>

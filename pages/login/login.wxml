@@ -1,0 +1,5 @@
+<!--pages/login/login.wxml-->
+<view class='login' wx:if="{{hasUserInfo}}">
+  <image src='../../image/login.png'></image>
+  <button size='mini' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>立即体验</button>
+</view>

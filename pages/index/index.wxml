@@ -1,0 +1,94 @@
+<!--index.wxml-->
+
+<view class='top-share'>
+  <image src='../../image/gift.png'></image>
+  <view class='top-text1'>福利说</view>
+  <view class='top-text2'>分享获更大得奖概率</view>
+  
+  <button id='detail-btn-share'  open-type='share'><image src='../../image/forward.png'></image></button> 
+</view>
+
+<view class='banner-swiper'>
+  <swiper indicator-dots='true' autoplay='true' circular='true' indicator-color='#fff' indicator-active-colo='#232321'>
+    <block wx:for="{{bannerMsg}}" wx:key="{{item.id}}">
+
+      <block wx:if='{{item.appid == ""}}'>
+        <navigator bindtap='adClick' data-id='{{item.id}}' data-index='{{index}}' url='../bannerAd/bannerAd?bannerUrl={{item.href}}'>
+          <swiper-item>
+            <image src='{{item.icon}}'></image>
+          </swiper-item>
+        </navigator> 
+      </block>
+
+      <block wx:else>
+        <navigator target='miniProgram' bindtap='adClick' app-id='{{item.app_id}}' data-id='{{item.id}}' data-index='{{index}}' open-type="navigate" path="{{item.path}}" extra-data="{{item.extra_data}}">
+        <swiper-item>
+            <image src='{{item.img_url}}'></image>
+          </swiper-item>
+      </navigator>
+      </block>
+      
+    </block>
+  </swiper>
+</view>
+
+
+<swiper class='roll-swiper' autoplay='true' interval='3000' circular='true' vertical='true'>
+  <block wx:for="{{rollMsg}}" wx:key="{{index}}" wx:if='{{item.avatar_url != ""}}'>
+    <swiper-item>
+      <image class='roll-avatar' src='{{item.avatar_url}}'></image>
+      <view class='roll-nickName'><text>{{item.nick_name}}</text></view>
+      <view class='roll-con'>刚刚通过
+        <text>{{item.type}}</text>，获得
+        <text class='roll-h'>{{item.title}}</text>
+      </view>
+    </swiper-item>
+  </block>  
+</swiper>
+
+
+<view class='activity'>
+  <view class='act-con' wx:for='{{activityMsg}}' wx:key='{{item.id}}'> 
+
+    <view class='act-con-t'>
+      <navigator url='../detail/detail?id={{item.id}}'><image src='{{item.img_url}}'></image></navigator>     
+      <form bindsubmit="submit" report-submit='true' >
+        <block wx:if="{{item.is_make == 1 }}">
+          <button wx:if="{{ item.status == 1}}" data-id='{{item.id}}' data-index='{{index}}' form-type="submit" type="warn" size="mini">预约</button>
+          <button wx:if="{{ item.status == 2}}" disabled='true'  type="warn" size="mini">预约结束</button>
+          <button wx:if="{{ item.status == 3}}" disabled='true'  type="warn" size="mini">预约结束</button>
+          <button wx:if="{{ item.status == 4}}" disabled='true' type="warn" size="mini">活动结束</button>
+        </block>
+
+        <block wx:if="{{item.is_make == 2 }}">
+          <button wx:if="{{ item.status != 3}}" type="warn" size="mini" disabled='true' >待开奖</button>
+          <button wx:if="{{ item.status == 3 && item.type == 0}}" data-id='{{item.id}}' data-index='{{index}}' form-type="submit" type="warn" size="mini">0元购</button>
+          <button wx:if="{{item.status == 3 && item.type == 1}}" data-id='{{item.id}}' data-index='{{index}}' form-type="submit" type="warn" size="mini">抢购</button>
+          <button wx:if="{{ item.status == 4}}" type="warn" size="mini" disabled='true'>活动结束</button>
+          <button wx:if="{{ item.is_rush == 2}}" type="warn" size="mini" disabled='true'>已抢购</button>
+        </block>
+      </form>
+    </view>
+
+    <view class='act-con-b'>
+      <view class='act-con-b-l'>
+        <view>福利：{{item.title}}</view>
+        <view><text>{{item.participants_num}}</text> 人已预约</view>
+        <view wx:if='{{item.is_make == 2 && item.status != 3}}'>开奖倒计时：剩余 <text>{{countDown[index]}}</text></view>
+      </view>
+      <view class='act-con-b-r'>
+        <view><text>￥</text>{{item.price}}</view>
+        <navigator open-type='navigate' target='miniProgram' app-id='wxb19a236e51a8d248'>领取更多</navigator>
+      </view>
+    </view>
+
+    <view class='act-con-avatar' wx:if="{{item.status == 3 && item.is_rush == 2}}">
+      <view class='success'><image  src='../../image/success.png'></image>已拼购成功</view>
+      <block wx:for='{{item.avatar}}' wx:key='{{index}}'>
+        <image class='ava' wx:if='{{index <= 10 && item.avatar_url != ""}}'  src='{{item.avatar_url}}'></image>
+      </block>     
+      <view class='more' wx:if='{{index > 10}}'>•••</view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,45 @@
+<!--pages/confirmOrder/confirmOrder.wxml-->
+<view class='address' bindtap='chooseAddress'>
+  <block  wx:if="{{orderMsg.address == ''}}">
+    <view class='address-add'>
+      <view>+</view>
+      <view>新建地址</view>  
+    </view>  
+  </block>
+  <block wx:if="{{orderMsg.address != ''}}"> 
+    <view class='address-con'>
+      <view class='address-con-detail'>
+        <view>{{orderMsg.address.userName}} {{orderMsg.address.telNumber}}</view>
+        <view><image src='../../image/address-icon.png'></image>{{orderMsg.address.provinceName}}{{orderMsg.address.cityName}}{{orderMsg.address.countyName}} {{orderMsg.address.detailInfo}}</view>
+      </view>
+      <view class='address-con-arrow'>
+        <image src='../../image/me-arrow.png'></image>
+      </view>
+    </view>
+  </block>
+  <image class='line-address' src='../../image/line-address.png'></image>
+</view>
+
+<view class='detail'>
+  <view class='detail-tit'><image src='{{orderMsg.icon}}'></image> {{orderMsg.title}}</view>
+  <view class='detail-banner'><image src='{{orderMsg.img_url}}'></image></view>
+  <view class='detail-style'>
+    <text>配送方式</text>
+    <text>快递发货 免邮</text>
+  </view>
+  <view class='detail-message'>
+    <view>留言：</view>
+    <input type="text" bindinput='getMessage' placeholder='点击给商家留言' placeholder-style='margin:4rpx 0 0 10rpx;font-size:28rpx;'></input>
+  </view>
+</view>
+
+<view class='detail-money'>
+  <view>商品金额</view>
+  <view>￥{{orderMsg.price}}</view>
+</view>
+
+<view class='detail-btn'>
+  <view>实付：<text>￥{{orderMsg.price}}</text></view>
+  <button wx:if='{{orderMsg.type == 0}}' bindtap='subOrder'>确认</button>
+  <button wx:if='{{orderMsg.type == 1}}' bindtap='subPay'>立即支付</button>
+</view>

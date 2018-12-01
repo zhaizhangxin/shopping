@@ -1,0 +1,48 @@
+<!--pages/share/share.wxml-->
+<view class='title'>
+  <image src='{{msg.img_url}}'></image>
+  <view class='title-name'>奖品：{{msg.title}}</view>
+  <view class='title-data'>{{data[0]}}月{{data[1]}}日  {{data[2]}}：{{data[3]}} 自动开奖</view>
+</view>
+
+<block wx:if="{{msg.is_gz == 1}}">
+  <view class='aboutBut introds'>
+    <text style='width:64%;height:48rpx;'>{{msg.href_url}}</text>
+    <image src='../../image/Group4@2x.png' data-href="{{msg.href_url}}" bindtap='detaGroup'></image>
+  </view>
+</block>
+<block wx:else>
+  <navigator class='company' target='miniProgram' open-type='navigate' app-id='{{msg.app_id}}' data-id='{{msg.id}}' data-index='{{index}}' path="{{msg.path}}" extra-data="{{msg.extra_data}}">
+    <view class='company-title'>赞助商</view>
+    <view class='company-con'>
+      {{msg.name}}
+      <image class='company-icon' src='{{msg.icon}}'></image>
+      <image class='compnay-arrow' src='../../image/me-arrow.png'></image>
+    </view>
+  </navigator>
+</block>
+
+<view class='brief' wx:if="{{msg.advert_brief != ''}}">
+  {{msg.advert_brief}}
+</view>
+
+<view class='share-outer'>
+  <view class='share'>
+    <view class='share-con'>
+      <button wx:if="{{ msg.is_help == 1}}" id='share-con-btn' size="mini" open-type='getUserInfo' bindgetuserinfo='getUserInfo'>帮助好友</button>
+      <button wx:if="{{ msg.is_help == 2}}" id='share-con-btn' class='btn-reserve' size="mini">已助力</button>
+
+      <view class='share-img'>
+        <image class='share-icon' src='../../image/detail-avatar.png'></image>
+        <image class='share-avatar' wx:for="{{msg.share}}" wx:key="{{index}}" wx:if='{{index <= 10 && item != ""}}' src='{{item}}'></image>       
+        <view  class='share-more' wx:if='{{msg.share.length > 10}}'>•••</view>
+      </view>
+     
+    </view>
+  </view>
+</view>
+
+<view class='b-btn'>
+  <button id='b-btn-share' open-type='share' size="mini">分享</button>
+  <navigator class='b-btn-nav' open-type='switchTab' url='../index/index'>参与更多优惠活动</navigator>
+</view>
