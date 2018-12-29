@@ -1,5 +1,19 @@
 <!--pages/login/login.wxml-->
-<view class='login' wx:if="{{hasUserInfo}}">
-  <image src='../../image/login.png'></image>
+<button class='content' open-type='getUserInfo' bindgetuserinfo='getUserInfo' wx:if="{{hasUserInfo}}">
+  <view class='cont'>
+    <image class='logoIcon' src='../../image/qdy_icon@2x.png'></image>
+    <text class='logoText'>福利0元购</text>
+  </view>
+  <view class='conFooter'>
+    <image class='contImg' src='../../image/qdy_bg@2x.png'></image>
+    <text class='conText'>超多好礼0元购</text>
+  </view>
+</button>
+
+<!-- <view class='login' wx:if="{{hasUserInfo}}">
+  <view class='loginIn'>
+    <image class='logoIcon' src='../../image/qdy_icon@2x.png'></image>
+  </view>
+
   <button size='mini' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>立即体验</button>
-</view>
+</view> -->

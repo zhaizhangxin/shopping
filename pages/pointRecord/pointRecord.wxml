@@ -1,0 +1,57 @@
+<!--pages/pointRecord/pointRecord.wxml-->
+<view class='content'>
+  <text class='contText'>积分记录只保留最近三天</text>
+
+  <view class='point'>
+    <block wx:for="{{msgList}}" wx:key="{{index}}">
+      <view class='pointCont'>
+        <!-- 收入 -->
+        <block wx:if="{{item.type == 10}}">
+          <!-- 签到 -->
+          <block wx:if="{{item.source == 10}}">
+            <view class='pointTime'>
+              <text class='time'>{{item.create_time}}</text>
+              <text class='pointText'>签到获得{{item.integral}}积分</text>
+            </view>
+            <view class='pect'>
+              <text class='pectongle'>+{{item.integral}}</text>
+            </view>
+          </block>
+          <block wx:if="{{item.source == 30}}">
+            <view class='pointTime'>
+              <text class='time'>{{item.create_time}}</text>
+              <text class='pointText'>看一看，送积分</text>
+            </view>
+            <view class='pect'>
+              <text class='pectongle'>+{{item.integral}}</text>
+            </view>
+          </block>
+          
+        </block>
+        <!-- 支出 -->
+        <block wx:else>
+          <!-- 抽奖 -->
+          <block wx:if="{{item.source == 20}}">
+            <view class='pointTime'>
+              <text class='time'>{{item.create_time}}</text>
+              <text class='pointText'>抽奖消费{{item.integral}}积分</text>
+            </view>
+            <view class='pect'>
+              <text class='pectongle'>-{{item.integral}}</text>
+            </view>
+          </block>
+          <block wx:if="{{item.source == 40}}">
+            <view class='pointTime'>
+              <text class='time'>{{item.create_time}}</text>
+              <text class='pointText'>积分兑换</text>
+            </view>
+            <view class='pect'>
+              <text class='pectongle'>-{{item.integral}}</text>
+            </view>
+          </block>
+        </block>
+      </view>
+    </block>
+  </view>
+
+</view>

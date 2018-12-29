@@ -1,0 +1,26 @@
+<!--pages/redemptionRecord/redemptionRecord.wxml-->
+<view class='content'>
+  <block wx:for="{{msgList}}" wx:key="{{index}}">
+    <view class='conts'>
+      <image class='contsImg' src='{{item.img}}'></image>
+      <view class='contsRight'>
+        <text class='contName'>免费抽奖:{{item.title}}</text>
+        <block wx:if="{{item.money != 0}}">
+          <view class='cont_redemp'>
+            <image src='../../image/dhsc_xjcopy@2x.png' class='redempIcon'></image>
+            <text class='redempText'>现金兑换</text>
+            <text class='redemp_prod'>{{item.money}}元</text>
+          </view>
+        </block>
+        <block wx:if="{{item.integral != 0}}">
+          <view class='cont_redemp'>
+            <image src='../../image/dhsc_jf@2x.png' class='redempIcon'></image>
+            <text class='redempText'>积分兑换</text>
+            <text class='redemp_prod'>{{item.integral}}积分</text>
+          </view>
+        </block>
+        <text class='cont_detil'>已兑换</text>
+      </view>
+    </view>
+  </block>
+</view>

@@ -22,24 +22,32 @@
 
 <view class='detail'>
   <view class='detail-tit'><image src='{{orderMsg.icon}}'></image> {{orderMsg.title}}</view>
-  <view class='detail-banner'><image src='{{orderMsg.img_url}}'></image></view>
+  <view class='detail-banner'><image src='{{orderMsg.img}}'></image></view>
   <view class='detail-style'>
     <text>配送方式</text>
     <text>快递发货 免邮</text>
   </view>
-  <view class='detail-message'>
+  <!-- <view class='detail-message'>
     <view>留言：</view>
     <input type="text" bindinput='getMessage' placeholder='点击给商家留言' placeholder-style='margin:4rpx 0 0 10rpx;font-size:28rpx;'></input>
-  </view>
+  </view> -->
 </view>
 
 <view class='detail-money'>
   <view>商品金额</view>
-  <view>￥{{orderMsg.price}}</view>
+  <view>￥{{walletPrice}}</view>
 </view>
 
 <view class='detail-btn'>
-  <view>实付：<text>￥{{orderMsg.price}}</text></view>
-  <button wx:if='{{orderMsg.type == 0}}' bindtap='subOrder'>确认</button>
-  <button wx:if='{{orderMsg.type == 1}}' bindtap='subPay'>立即支付</button>
+  <block wx:if="{{orderMsg.type == 10}}">
+    <view>实付：<text>￥{{walletPrice}}</text></view>
+  </block>
+  <block wx:if="{{orderMsg.type == 20}}">
+    <view>兑换积分：<text>{{orderMsg.integral}}</text></view>
+  </block>
+  <block wx:if="{{orderMsg.type == 30}}">
+    <view>兑换金额：<text>￥{{moneyPrice}}</text></view>
+  </block>
+  <button wx:if='{{orderMsg.type == 10}}' bindtap='subOrder'>确认</button>
+  <button wx:else bindtap='subPay'>立即支付</button>
 </view>

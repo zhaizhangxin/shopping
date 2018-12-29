@@ -1,5 +1,6 @@
 const reqUrl = require('../../utils/reqUrl');
 const formatTime = require('../../utils/util.js')
+const formatTimes = require('../../utils/utilTime.js')
 
 //index.js
 Page({
@@ -22,7 +23,43 @@ Page({
     //倒计时
     countDown:[],
 
+    // 签到
+    signMask:true
   },
+
+  // 攻略
+  raiders:function(){
+    wx.navigateTo({
+      url: '../raiders/raiders',
+    })
+  },
+
+  // 点击跳转详情
+  details:function(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../detail/detail?id='+id+'&type='+10,
+    })
+  },
+  // 我要上首页
+  lottery:function(){
+    wx.navigateTo({
+      url: '../lottery/lottery',
+    })
+  },
+  // 签到成功（关闭窗口）
+  signSuccess:function(){
+    this.setData({
+      signMask:false
+    })
+  }, 
+  // 福利商城
+  welfareMall:function(){
+    wx.navigateTo({
+      url: '../welfareMall/welfareMall',
+    })
+  },
+   
 
 
   /**
@@ -163,121 +200,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    //获取banner广告
-    wx.request({
-      url: reqUrl + 'banner',
-      header: {
-        token: wx.getStorageSync('token')
-      },
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: res => {
-        if (res.statusCode == 200) {
-          this.setData({
-            bannerMsg: res.data.msg
-          })
-
-          // wx.hideLoading();
-        }else{
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            mask: true
-          })
-
-        }
-      },
-      fail: function (res) { },
-      complete: function (res) { },
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
     })
 
-    //获取roll信息
     wx.request({
-      url: reqUrl + 'roll',
+      url: reqUrl + 'index',
       header: {
+        // code: wx.getStorageSync('code')
         token: wx.getStorageSync('token')
       },
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
       success: res => {
-        if (res.statusCode == 200) {
-          this.setData({
-            rollMsg: res.data.msg
-          })
-
-          // wx.hideLoading();
-        } else {
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            mask: true
-          })
-
-        }
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-
-    //获取activity活动信息
-    wx.request({
-      url: reqUrl + 'activity',
-      header: {
-        token: wx.getStorageSync('token')
-      },
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: res => {
-
+        console.log(res);
         wx.hideLoading();
-        console.log(res.data);
-        if (res.statusCode == 200) {
+        if (res.data.error_code == 0) {
+          let datas = res.data.msg.activity;
+          let lottery_time = 'res.data.msg.activity.lottery_time';
+          let price = 'res.data.msg.activity.price';
+          for (let i = 0; i < datas.length; i++) {
+            datas[i]["lottery_time"] = formatTimes.formatTimeTwo(datas[i]["lottery_time"], 'Y年M月D日 h:m');
+            datas[i]["price"] = formatTime.toMoney(datas[i]["price"]);
+          }
+          
+          let wallets = res.data.msg.wallet;
+          let wallet = formatTime.toMoney(wallets);
 
           this.setData({
-            activityMsg: res.data.msg
+            wallet: wallet, //账户余额
+            integral: res.data.msg.integral, //积分余额
+            activity: res.data.msg.activity, //活动信息
+            signIn: res.data.msg.signIn,
+            [lottery_time]: datas,
+            [price]:datas
           })
-
-          //已预约的倒计时
-          for (let index in res.data.msg) {
-
-            if (res.data.msg[index].is_make == 2 && res.data.msg[index].status != 3 && res.data.msg[index].status != 5) {
-
-              let time = Number(this.data.activityMsg[index].start_time) - Math.round(new Date / 1000);
-              let countDown = 'countDown[' + index + ']';
-
-              this.setData({
-                [countDown]: formatTime.formatTime(time)
-              })
-
-              var interval = setInterval(() => {
-
-
-                if (Number(time) > 0) {
-                  time--;
-                  this.setData({
-                    [countDown]: formatTime.formatTime(time)
-                  })
-
-                } else {
-                  // console.log(index)
-                  this.data.activityMsg[index].status = 3
-                  this.setData({
-                    activityMsg: this.data.activityMsg
-                  })
-
-                  clearInterval(interval);
-                }
-              }, 1000)
-            }
-
-
-          }
-
-          // console.log(res)
 
         } else {
           wx.showToast({
@@ -291,6 +250,7 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+   
   },
 
   /**

@@ -1,0 +1,279 @@
+/* pages/welfareMall/welfareMall.wxss */
+page{
+  background: #f5f5f5;
+}
+.content{
+  background: #f5f5f5;
+}
+.headImg{
+  width: 100%;
+  height: 250rpx;
+  display: block;
+}
+
+/* 兑换记录 */
+.headCont{
+  margin: 24rpx 18rpx 36rpx 18rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.flexCont{
+  position: relative;
+}
+.flexImg{
+  width: 234rpx;
+  height: 124rpx;
+  display: block;
+}
+.numText{
+  position: absolute;
+  top: 6%;
+  left: 0;
+  width: 100%;
+}
+.numTexts{
+  position: absolute;
+  top: 14%;
+  left: 0;
+  width: 100%;
+}
+.contNum{
+  margin-top: 10rpx;
+  display: block;
+  text-align: center;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #47DE96;
+}
+.contText{
+  margin-top: 6rpx;
+  display: block;
+  text-align: center;
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #5D6977;
+}
+.contIcon{
+  display: flex;
+}
+.headIcon{
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  margin-left: 32%;
+  display: block;
+  width: 20rpx;
+  height: 20rpx;
+}
+.cont_Num{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #F2C54E;
+}
+.conts_Num{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #FF646A;
+}
+
+/* 限时兑换 */
+.redemption{
+  margin: 0 30rpx;
+
+}
+.redemp{
+  display: flex;
+  justify-content: space-between;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.redempTime{
+  font-size:30rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #666;
+}
+.times{
+  margin-left: 10rpx;
+  font-size:22rpx;
+  font-family:PingFangSC-bold;
+  font-weight:bold;
+  color: #FF5365;
+}
+.redempText{
+  font-size:22rpx;
+  font-family:MicrosoftYaHei;
+  color: #666;
+}
+
+.rempCont{
+  margin-top: 20rpx;
+  padding: 30rpx;
+  background: #fff;
+  display: flex;
+  border-radius: 20rpx;
+}
+.rempImg{
+  width: 210rpx;
+  height: 210rpx;
+}
+.rempRight{
+  margin-left: 18rpx;
+}
+.shopName{
+  margin-bottom: 20rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+  display: block;
+}
+.integral{
+  margin-top: 10rpx;
+  display: flex;
+}
+.integralIcon{
+  margin-top: 6rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.integralText{
+  margin-left: 10rpx;
+  font-size:22rpx;
+  font-family:MicrosoftYaHei;
+  color: #999;
+}
+.integralNum{
+  margin-left: 10rpx;
+  font-size:22rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #FF646A;
+}
+.redeemNow{
+  margin-top: 36rpx;
+  padding: 6rpx 0;
+  width: 180rpx;
+  text-align: center;
+  display: block;
+  background:linear-gradient(327deg,rgba(147,104,242,1) 0%,rgba(255,158,244,1) 100%);
+  border-radius:10rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+}
+
+/* 大家都在换 */
+.prizeRedemption{
+  margin-top: 50rpx;
+}
+.prizeText{
+  margin-left: 30rpx;
+  font-size:30rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #666;
+  display: block;
+}
+.redemption_content{
+  margin: 30rpx;
+}
+
+.prizeCont{
+  margin-left: 14rpx;
+  /* margin: 20rpx 0 0 30rpx; */
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  width: 280rpx;
+  float: left;
+}
+.prizeImg{
+  width: 280rpx;
+  height: 280rpx;
+}
+.prize_text{
+  width: 280rpx;
+  margin-top: 20rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.redamption_prize{
+  margin-top: 12rpx;
+  display: flex;
+}
+.redamotion_remp{
+  display: flex;
+}
+.redamotion_remps{
+  display: flex;
+  margin-left: 20rpx;
+}
+
+/* 获取现金红包 */
+.gettingCashMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+.gettingCash{
+  position: fixed;
+  top: 28%;
+  left: 7%;
+  padding: 110rpx 74rpx 82rpx 74rpx;
+  background: #fff;
+  z-index: 20;
+  border-radius: 20rpx;
+}
+.getting{
+  font-size:38rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #EE6665;
+  display: block;
+  text-align: center;
+}
+.gettingText{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #4a4a4a;
+  display: block;
+  text-align: center;
+}
+.gettingBut{
+  margin-top: 60rpx;
+  background: #EE6665;
+  border-radius: 10rpx;
+  width: 500rpx;
+  height: 80rpx;
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+}
+.gettingButs{
+  margin-top: 60rpx;
+  background: #A384F4;
+  border-radius: 10rpx;
+  width: 500rpx;
+  height: 80rpx;
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+}

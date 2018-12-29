@@ -1,5 +1,6 @@
 // pages/confirmOrder/confirmOrder.js
 const reqUrl = require('../../utils/reqUrl');
+const formatTime = require('../../utils/util.js')
 
 Page({
 
@@ -18,14 +19,33 @@ Page({
 
   //获取地址信息
   chooseAddress(e){
-
     wx.chooseAddress({
       success: res => {
+        console.log(res);
         this.setData({
-          'orderMsg.address':res
+          'orderMsg.address': res
         })
       }
     })
+    wx.getSetting({
+      success(res) {
+        console.log(22);
+        if (res.authSetting['scope.address'] == false) {
+          wx.openSetting({
+            success(res) {
+              console.log(res.authSetting)
+              // res.authSetting = {
+              //   "scope.userInfo": true,
+              //   "scope.userLocation": true
+              // }
+            }
+          })
+        } 
+      }
+    })
+    
+    
+    
   },
 
   //用户出入信息
@@ -50,19 +70,15 @@ Page({
       return ;
     }
 
-    this.setData({
-      'orderMsg.address.form_id':this.data.options.formId,
-      'orderMsg.address.a_id': this.data.options.id,
-      'orderMsg.address.order_no': this.data.orderMsg.order_no,
-    })
-
-    
     wx.request({
-      url: reqUrl + 'place',
+      url: reqUrl + 'affirmOrder',
       header: {
         token: wx.getStorageSync('token')
       },
-      data: this.data.orderMsg.address,
+      data: {
+        id: this.data.options.typeid,
+        address: JSON.stringify(this.data.orderMsg.address)
+      },
       method: 'POST',
       dataType: 'json',
       responseType: 'text',
@@ -116,70 +132,41 @@ Page({
       })
       return;
     }
-
-    this.setData({
-      'orderMsg.address.form_id': this.data.options.formId,
-      'orderMsg.address.a_id': this.data.options.id,
-      'orderMsg.address.order_no': this.data.orderMsg.order_no,
-    })
-
-
+    
     wx.request({
-      url: reqUrl + 'pay',
+      url: reqUrl + 'conversion',
       header: {
         token: wx.getStorageSync('token')
       },
-      data: this.data.orderMsg.address,
+      data:{
+        id: this.data.options.typeid,
+        type: this.data.options.type,
+        address: JSON.stringify(this.data.orderMsg.address)
+      },
       method: 'POST',
       dataType: 'json',
       responseType: 'text',
       success: res => {
+        wx.hideLoading();
 
         if (res.statusCode == 200) {
-
-          var payInfo = res.data.msg;
-          var timeStam = payInfo.timeStamp.toString();
-          wx.requestPayment({
-            'timeStamp': timeStam,
-            'nonceStr': payInfo.nonceStr,
-            'package': payInfo.package,
-            'signType': 'md5',
-            'paySign': payInfo.paySign,
-            'success': res => {
-              
-              wx.hideLoading();
-              // console.log(res);
-              wx.showToast({
-                title: '订单提交成功',
-                icon: 'none',
-                duration: 1000
-              })
-
-              
-              wx.switchTab({
-                url: '../index/index', 
-                success: function (e) {
-                  // console.log(getCurrentPages(),e)
-                  var page = getCurrentPages().pop();
-                  if (page == undefined || page == null) return;
-                  page.onLoad();
-                }
-
-              })
-
-              
-              
-            },
-            'fail': function (res) {
-              console.log('pay Fail');
-              console.log(res);
-            },
-            'complete': function (res) { }
+          console.log(res);
+          wx.showToast({
+            title: '订单提交成功',
+            icon: 'none',
+            duration: 1000
           })
 
-          
+          wx.switchTab({
+            url: '../index/index',
+            success: function (e) {
+              var page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              page.onLoad();
+            }
+
+          })
         } else {
-          wx.hideLoading();
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
@@ -198,7 +185,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options);
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -210,32 +197,36 @@ Page({
 
     //获取订单详情
     wx.request({
-      url: reqUrl + 'order',
+      url: reqUrl + 'orderDetail',
       header: {
         token: wx.getStorageSync('token')
       },
       data:{
-        a_id: options.id,
-        form_id:options.formId
+        id: options.typeid,
+        type: options.type
       },
-      method: 'GET',
+      method: 'POST',
       dataType: 'json',
       responseType: 'text',
       success: res => {
-
         wx.hideLoading();
         if (res.statusCode == 200) {
+          let wallets = res.data.msg;
+          let money = formatTime.toMoney(wallets.money);
+          let wallet = formatTime.toMoney(wallets.price)
+          console.log(wallet);
+          console.log(money);
           this.setData({
-            orderMsg: res.data.msg
+            orderMsg: res.data.msg,
+            moneyPrice: money,
+            walletPrice: wallet
           })
-
         } else {
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
             mask: true
           })
-
         }
       },
       fail: function (res) { },

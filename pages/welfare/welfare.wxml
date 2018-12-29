@@ -1,0 +1,25 @@
+<!--pages/welfare/welfare.wxml-->
+<view class='content'>
+  <image class='header' src='../../image/lfl_banner@2x.png'></image>
+  <view class='welfareCont'>
+    <block wx:for="{{msgList}}" wx:key="{{index}}">
+      <view class='welfare'>
+        <view class='welfareLeft'>
+          <image class='weIcon' src='{{item.image}}'></image>
+          <view class='weText'>
+            <text class='weName'>{{item.name}}</text>
+            <text class='weDes'>{{item.slogan}}</text>
+          </view>
+        </view>
+        <view class='welfareRight'>
+          <block wx:if="{{item.get == 1}}">
+            <text class='received'>已领取</text>
+          </block>
+          <block wx:else>
+            <view class='welfText' bindtap='click' data-list="{{item}}">领积分</view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

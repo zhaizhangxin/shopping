@@ -1,24 +1,55 @@
 /* pages/login/login.wxss */
 /*授权登录  */
-.login{
-  position: relative;
-  display: flex;
-  justify-content:center;
-  z-index: 999;
+page{
+  background: #fff;
 }
-.login image{
+.content{
+  background: #fff;
+  padding: 0;
+  margin: 0;
+}
+.content::after{
+  border: none;
+  outline: none;
+}
+.cont{
+  width: 100%;
+  height: 600rpx;
+}
+
+.logoIcon{
+  padding-top: 320rpx;
+  margin: auto;
+  width: 200rpx;
+  height: 200rpx;
   display: block;
-  width:100%;
-  height:100vh;
 }
-.login button{
+.logoText{
+  padding-top: 10rpx;
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color: #333;
+  display: block;
+  text-align: center;
+}
+.conFooter{
+  position: relative;
+  width: 100%;
+  height: 600rpx;
+}
+.contImg{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.conText{
   position: absolute;
-  bottom:120rpx;
-  left: 34%;
-  width:260rpx;
-  height: 70rpx;
-  line-height:70rpx;
-  color:#fff;
-  background-color:rgba(255,255,255,0);
-  border:1px solid #fff;
+  bottom: 10rpx;
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  width: 100%;
+  color: #666;
+  display: block;
+  text-align: center;
 }
+

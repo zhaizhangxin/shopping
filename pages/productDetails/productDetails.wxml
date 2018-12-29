@@ -1,0 +1,75 @@
+<!--pages/productDetails/productDetails.wxml-->
+<view class='content'>
+  <!-- 头部 -->
+  <view class='cont_cont'>
+    <image class='headImg' src='{{msgList.productImg}}'></image>
+    <view class='contDetail'>
+      <view class='detailName'>
+        <text class='shopName'>免费抽奖:{{msgList.title}}</text>
+        <text class='marketPrice'>市场价￥{{to_price}}</text>
+      </view>
+      <text class='numbers'>已经有{{msgList.count}}人兑换</text>
+      <view class='product_details'>
+        <view class='product_name'>
+          <image class='product_icon' src='../../image/dhsc_jf@2x.png'></image>
+          <text class='product_prod'>积分兑换</text>
+          <text class='product_num'>{{msgList.integral}}积分</text>
+        </view>
+
+        <view class='products_name'>
+          <image class='product_icon' src='../../image/dhsc_xjcopy@2x.png'></image>
+          <text class='product_prod'>现金兑换</text>
+          <text class='product_num'>{{to_balance}}元</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品详情 -->
+  <view class='details'>
+    <text class='details_text'>商品详情</text>
+    <block wx:for="{{msgList.productDetail}}" wx:key="{{index}}">
+      <image src='{{item.detail_img_url}}' mode="widthFix"></image>
+    </block>
+  </view>
+
+  <!-- 积分兑换弹框 -->
+  <view class='redeemGoods' wx:if="{{redeemGood}}">
+    <text class='redeemGoodsText'>使用{{msgList.integral}}积分兑换商品</text>
+    <text class='redeemText'>是否确认兑换</text>
+    <view class='redeemButs'>
+      <view class='redeen' bindtap='redGood'>兑换</view>
+      <view class='redeenbtn' bindtap='exitRedeem'>取消</view>
+    </view>
+  </view>
+  <view class='redeemGoodsMask' wx:if="{{redeemGood}}" bindtap='exitRedeem'></view>
+
+  <!-- 现金兑换弹框 -->
+  <view class='redeemGoods' wx:if="{{cashGood}}">
+    <text class='redeemGoodsText'>使用{{to_balance}}元兑换商品</text>
+    <text class='redeemText'>是否确认兑换</text>
+    <view class='redeemButs'>
+      <view class='redeen' bindtap='redGoods'>兑换</view>
+      <view class='redeenbtn' bindtap='exitCash'>取消</view>
+    </view>
+  </view>
+  <view class='redeemGoodsMask' wx:if="{{cashGood}}" bindtap='exitCash'></view>
+
+  <!-- 底部悬浮 -->
+  <view class='footer'>
+    <view class='footer_fot'>
+      <block wx:if="{{user_Integral == 1}}">
+        <view class='footer_prod' bindtap='redeemGoods' data-id="{{msgList.id}}">积分兑换</view>
+      </block>
+      <block wx:else>
+        <view class='footer_prods'>积分不足</view>
+      </block>
+      <block wx:if="{{user_Balance == 1}}">
+        <view class='footer_text' bindtap='cashGoods' data-id="{{msgList.id}}">现金兑换</view>
+      </block>
+      <block wx:else>
+        <view class='footer_texts'>现金不足</view>
+      </block>
+    </view>
+  </view>
+
+</view>

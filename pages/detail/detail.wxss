@@ -1,5 +1,595 @@
 /* pages/detail/detail.wxss */
-.detail-top {
+.content{
+  background: #f5f5f5;
+}
+/* 头部 */
+.header{
+  position: relative;
+  background: #fff;
+}
+.headImg{
+  width: 100%;
+  height: 342rpx;
+  display: block;
+}
+.headsContent{
+  position: absolute;
+  top: 88%;
+  left: 4%;
+  border-radius: 20rpx;
+}
+/* 未中奖 */
+.noWon{
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  width:630rpx;
+  background: #ccc;
+  border-radius:20rpx 20rpx 0 0;
+}
+
+.wonText{
+  margin-top: 24rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  color: #fff;
+}
+/* 待开奖 */
+.headTime{
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  width:630rpx;
+  background:linear-gradient(316deg,rgba(169,130,255,1) 0%,rgba(226,142,254,1) 100%);
+  border-radius:20rpx 20rpx 0 0;
+}
+.headCont{
+  display: flex;
+}
+.fill{
+  width: 56rpx;
+  height: 60rpx;
+  display: block;
+}
+.contTime{
+  margin-left: 10rpx;
+  height: 60rpx;
+}
+
+.contTime text{
+  display: block;
+}
+.fillTime{
+  font-size:22rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+}
+.fillTimes{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+}
+.headNum{
+  display: flex;
+  padding: 10rpx 20rpx 10rpx 10rpx;
+  margin-top: 8rpx;
+  background:rgba(255,255,255,0.3);
+  border-radius:6rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.headIcon{
+  width: 18rpx;
+  height: 26rpx;
+  display: block;
+}
+.headNum text{
+  margin-left: 10rpx;
+  font-size:20rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+}
+/* 商品信息 */
+.headName{
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+.names{
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #333;
+}
+.money{
+  font-size:40rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #FF646A;
+}
+.moneys{
+  font-size:30rpx;
+}
+
+/* 待开奖 */
+.swiper_Inter{
+  margin-top: 54rpx;
+  position: relative;
+  height: 270rpx;
+}
+.swiper{
+  margin-top: 66rpx;
+  height: 240rpx;
+}
+.swiperEnve{
+  display: flex;
+}
+.awarded{
+  /* margin: auto; */
+  margin-left: 74rpx;
+  margin-right: 18rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background: #EE6665;
+  transform: scale(0.9);
+  box-shadow: 0 10rpx 14rpx #FFAABB;
+}
+.awardedText{
+  /* padding-top: 60rpx; */
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  line-height: 180rpx;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+.inviteFriends{
+  padding: 0;
+  margin-left: 30rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background:linear-gradient(327deg,rgba(147,104,242,1) 0%,rgba(255,158,244,1) 100%);
+  transform: scale(0.9);
+  line-height: 40rpx;
+  box-shadow: 0 10rpx 14rpx #CCBFDC;
+}
+.invite_friend{
+  background: #B5B5B5;
+  box-shadow: 0 10rpx 14rpx #DBDBDB;
+}
+.inviteFriends::after{
+  border: none;
+  outline: none
+}
+.inviteTime{
+  padding-top: 36rpx;
+  font-size:22rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+.inviteText{
+  /* padding: 54rpx 10rpx;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Medium;
+  font-weight:bold;
+  color: #fff;
+  display: block;
+  text-align: center;  */
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  line-height: 180rpx;
+  color: #fff;
+  display: block;
+  text-align: center;
+
+}
+
+
+.swiperIcon{
+  margin: auto 0;
+  display: flex;
+  justify-content: space-between;
+  width: 16%;
+}
+.swiperIcon view{
+  /* margin-left: 40rpx; */
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #EE6665;
+}
+.swiperInter{
+  position: absolute;
+  bottom: 40rpx;
+  left: 36%;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #666666;
+}
+
+
+/* 立即开抢 */
+.envelope{
+  margin: 0 30rpx;
+  margin-top: 220rpx;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 20rpx;
+}
+.envel{
+  padding: 60rpx 264rpx;
+}
+
+.envalColl{
+  padding: 0;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  line-height: 40rpx;
+  background: #EE6665;
+  box-shadow: 0 10rpx 14rpx #FFAABB;
+
+}
+.collText{
+  padding-top: 60rpx;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+.envalText{
+  /* margin-top: 98rpx; */
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  display: block;
+  text-align: center;
+}
+.consumption{
+  margin-top: 20rpx;
+  display: block;
+  text-align: center;
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #666;
+}
+/* 立即开抢弹框 */
+.envelsMask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+.envelMask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+}
+.envelBgimg{
+  width: 100%;
+  height: 100%;
+}
+.envalBg{
+  position: fixed;
+  /* left: 0; */
+  top: 8%;
+  width: 100%;
+  height: 805rpx;
+}
+.evaleImg{
+  width: 100%;
+  height: 100%;
+}
+.welfare{
+  position: absolute;
+  top: 25%;
+  left: 14%;
+}
+.welfareImg{
+  width: 530rpx;
+  height: 250rpx;
+  border-radius: 0 0 10rpx 10rpx;
+}
+.welf{
+  margin-top: 70rpx;
+}
+.welf text{
+  font-size:36rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #FEE9AB;
+  text-align: center;
+}
+.welfareName{
+  display: block;
+}
+.welfareText{
+  margin-top: 10rpx;
+  display: block;
+}
+.envelope_welf{
+  margin-top: 40rpx;
+  margin-left: 16rpx;
+  position: relative;
+}
+.enval_welf{
+  margin-left: 10rpx;
+  width: 480rpx;
+  height: 80rpx;
+}
+.enval_text{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 66rpx;
+  text-align: center;
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color: #513A2E;
+}
+.exitMask{
+  position:absolute;
+  top:110%;
+  left:45%;
+  width:60rpx;
+  height:60rpx;
+  display:block;
+}
+/* 中奖者 */
+.winnerImg{
+  margin: auto;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  display: block;
+}
+/* 参与人员 */
+.participate{
+  padding: 0 86rpx 30rpx 86rpx;
+  display: flex;
+  justify-content:space-around;
+  line-height: 34rpx;
+}
+.partText{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #666;
+}
+.partImg{
+  width: 66%;
+  height: 36rpx;
+  overflow: hidden;
+}
+.partHeadImg{
+  margin-left: 10rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+}
+.arrow{
+  margin-top: 8rpx;
+  display: block;
+  width: 10rpx;
+  height: 20rpx;
+}
+/* 参与总人员 */
+.participationMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+}
+.participation{
+  position: fixed;
+  top: 18%;
+  left: 6%;
+  background: #fff;
+  z-index: 20;
+  width: 650rpx;
+  height: 710rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.participationIcon{
+  margin-top: 40rpx;
+  margin-left: 198rpx;
+  width: 246rpx;
+  height: 70rpx;
+}
+.participationText{
+  margin-top: 30rpx;
+  display: block;
+  font-size:30rpx;
+  font-family:MicrosoftYaHei;
+  text-align: center;
+  color: #999;
+}
+.drawer{
+  margin: auto;
+  padding-top:30rpx;
+  padding-bottom: 30rpx;
+  width: 600rpx;
+  height: 464rpx;
+}
+.draPic {
+  margin-top: 30rpx;
+  padding-left: 10rpx;
+}
+.frePics{
+  margin-left: 30rpx;
+  margin-bottom: 30rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+
+
+/* 赞助商介绍 */
+.introduction{
+  position: relative;
+}
+.suction{
+  margin-top: 30rpx;
+  position: relative;
+}
+.introd{
+  position: absolute;
+  top: -84rpx;
+  margin: 30rpx 84rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  width:528rpx;
+  /* height:120rpx; */
+  background:linear-gradient(315deg,rgba(255,91,98,1) 0%,rgba(255,161,68,1) 100%);
+  border-radius:30rpx;
+}
+.introds{
+  display: flex;
+}
+.introdImg{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.introduct{
+  margin-left: 20rpx;
+}
+.introdText{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+  display: block;
+}
+.probability{
+  margin-top: 10rpx;
+  font-size:20rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+  display: block;
+}
+.introdIcon{
+  margin: auto 0;
+  width: 20rpx;
+  height: 34rpx;
+}
+
+.profile{
+  margin: 0 30rpx;
+  margin-top: 84rpx;
+  padding: 96rpx 30rpx 44rpx 30rpx;
+  background: #fff;
+  border-radius: 30rpx;
+}
+.profile text{
+  display: block;
+  font-size:24rpx;
+  color: #666;
+  font-family:MicrosoftYaHei;
+  line-height:34rpx;
+  letter-spacing:4rpx;
+}
+
+/* 详情 */
+.details{
+  margin: 30rpx; 
+  /* margin-top: 30rpx; */
+  margin-bottom: 88rpx;
+  padding: 30rpx 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.detailsText{
+  margin-bottom: 30rpx;
+  font-size:30rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+  display: block;
+  text-align: center;
+}
+.details image{
+  width: 100%;
+}
+
+/* 底部悬浮 */
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+/* 中奖底部悬浮 */
+.footWin{
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  line-height: 88rpx;
+}
+.moreDraws{
+  width: 450rpx;
+  display: block;
+  text-align: center;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  background: #EE6665;
+}
+.address{
+  width: 300rpx;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #666;
+  display: block;
+  text-align: center;
+  background: #fff;
+}
+/* 未中奖底部悬浮 */
+.footWon{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+.footWon text{
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align: center;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  background: #EE6665;
+}
+
+
+
+/* .detail-top {
   width: 100%;
   background: #fff;
 }
@@ -59,7 +649,6 @@
 }
 
 .detail-company{
-  /* height: 230rpx; */
   background:#fff;
   margin-top:20rpx; 
   padding: 0 50rpx;
@@ -103,7 +692,6 @@
 
 .detail-reserve{
   background: #fff;
-  /* min-height: 380rpx; */
   padding:20rpx 0;
   margin: 20rpx 0;
 }
@@ -209,7 +797,6 @@ button::after{
 
 .aboutBut {
   display: flex;
-  /* padding: 24rpx 20rpx 0 20rpx; */
 }
 
 .aboutBut text {
@@ -234,4 +821,4 @@ button::after{
   margin-left: 20rpx;
   width: 200rpx;
   height: 70rpx;
-}
+} */

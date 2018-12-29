@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.1",
+	"libVersion": "2.4.2",
 	"appid": "wx04ae6db5ac8838c8",
 	"projectname": "shopping",
 	"isGameTourist": false,
@@ -34,13 +34,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "share",
-					"pathName": "pages/index/index",
-					"query": "",
+					"pathName": "pages/detail/detail",
+					"query": "id=88&pathid=1&uid=1874",
 					"scene": "1007"
 				},
 				{

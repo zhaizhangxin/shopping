@@ -1,0 +1,79 @@
+/* pages/allDraws/allDraws.wxss */
+page{
+  background: #f5f5f5;
+}
+.content{
+  background: #f5f5f5;
+}
+.contShop{
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+  background: #fff;
+  display: flex;
+  border-radius: 20rpx;
+}
+.shopImg{
+  width: 210rpx;
+  height: 210rpx;
+}
+.shopping{
+  margin-left: 16rpx;
+  width: 62%;
+}
+.shopName{
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+  display: block;
+}
+.shopTime{
+  margin-top: 16rpx;
+  font-size:22rpx;
+  font-family:PingFangSC-Regular;
+  color: #999;
+  display: block;
+}
+.shopPorper{
+  display: flex;
+  justify-content: space-between;
+}
+.poperShop{
+  display:flex;
+  padding:10rpx 20rpx 10rpx 10rpx;
+  margin-top:8rpx;
+  background:#FDEEEF;
+  border-radius:6rpx;
+  height:30rpx;
+  line-height:30rpx;
+}
+.porperIcon{
+  width: 18rpx;
+  height: 26rpx;
+  display: block;
+}
+.porperText{
+  margin-left: 10rpx;
+  font-size:20rpx;
+  font-family:PingFangSC-Regular;
+  color: #FF646A;
+}
+.shopNum{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 30rpx;
+}
+.shopMoney{
+  font-size:40rpx;
+  font-family:PingFangSC-Regular;
+  color: #FF646A;
+}
+.yuan{
+  font-size: 30rpx;
+}
+.shopinter{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  color: #FF1946;
+}

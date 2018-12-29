@@ -1,104 +1,255 @@
 <!--pages/detail/detail.wxml-->
-
-<view class='detail'>
-  <view class='detail-top'>
-    <image src='{{detailMsg.detail.img_url}}'></image>
-    <view class='detail-top-c'>
-      <text>奖品：{{detailMsg.detail.title}}</text>
-      <text><text>￥</text>{{detailMsg.detail.price}}</text>
+<view class='content'>
+  <!-- 头部 -->
+  <view class='header'>
+    <image src='{{activity.productBanner}}' class='headImg'></image>
+    <view class='headsContent'>
+      <block wx:if="{{is_luck == 0}}">
+        <!-- 不是当前用户中奖 -->
+        <block wx:if="{{luckUser.isLuck == 0}}">
+          <!-- 未中奖 -->
+          <view class='noWon'>
+            <view class='headCont'>
+              <image class='fill' src='../../image/xq_djs@2x.png'></image>
+              <view class='contTime'>
+                <text class='fillTime'>{{activityTimes}} 自动开奖</text>
+                <text class='fillTimes'>已开奖</text>
+              </view>
+            </view>
+            <text class='wonText'>很遗憾，您未中奖</text>
+          </view>
+        </block>
+        <!-- 当前用户中奖 -->
+        <block wx:else>
+          <!-- 已中奖 -->
+          <view class='headTime'>
+            <view class='headCont'>
+              <image class='fill' src='../../image/xq_djs@2x.png'></image>
+              <view class='contTime'>
+                <text class='fillTime'>{{activityTimes}} 自动开奖</text>
+                <text class='fillTimes'>已中奖</text>
+              </view>
+            </view>
+            <view class='headNum'>
+              <image src='../../image/xq_jf@2x.png' class='headIcon'></image>
+              <text>{{activity.activityPeople}}人在抢</text>
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <!-- 待开奖 -->
+        <view class='headTime'>
+          <view class='headCont'>
+            <image class='fill' src='../../image/xq_djs@2x.png'></image>
+            <view class='contTime'>
+              <text class='fillTime'>开奖日期：{{activity_days}}</text>
+              <text class='fillTimes'>{{activityTimes}} 自动开奖</text>
+            </view>
+          </view>
+          <view class='headNum'>
+            <image src='../../image/xq_jf@2x.png' class='headIcon'></image>
+            <text>{{activity.activityPeople}}人在抢</text>
+          </view>
+        </view>
+      </block>
+      
+      <view class='headName'>
+        <text class='names'>免费抽奖:{{activity.productName}}</text>
+        <text class='money'><text class='moneys'>￥</text>{{activity.price}}</text>
+      </view>
     </view>
-    <view class='cD' wx:if='{{detailMsg.detail.is_make == 2 && detailMsg.detail.status != 3}}'>开奖倒计时：剩余
-      <text>{{countDown}}</text>
+    
+  </view>
+  
+  <!-- 立即开抢 -->
+  <view class='envelope'>
+    <!-- 中奖者/未中奖者 -->
+    <block wx:if="{{is_luck == 0}}">
+      <view class='envel'>
+        <image class='winnerImg' src='{{luckUser.headImg}}'></image>
+        <text class='consumption'>{{luckUser.userName}}(中奖者)</text>
+      </view>
+    </block>
+    <!-- 参与抽奖 -->
+    <block wx:else>
+      <!-- 立即开抢 -->
+      <block wx:if="{{isLottery == 2}}">
+        <view class='envel'>
+          <form report-submit='true' bindsubmit='envalColl' wx:if="{{report}}">
+            <button form-type='submit' class='envalColl'>
+              <text class='collText'>立即开抢</text>
+              <text class='envalText'>领红包</text>
+            </button>
+          </form>
+          <button open-type='getUserInfo' class='envalColl' bindgetuserinfo='getUserInfo' wx:else>
+            <text class='collText'>立即开抢</text>
+            <text class='envalText'>领红包</text>
+          </button>
+          <text class='consumption'>消耗{{activity.activityIntegral}}积分</text>
+        </view>
+      </block>
+      <!-- 待开奖 -->
+      <block wx:else>
+        <view class='swiper_Inter'>
+          <swiper class='swiper' next-margin='180rpx' previous-margin='180rpx'>
+            <swiper-item>
+              <view class='swiperEnve'>
+                <view class='awarded'>
+                  <text class='awardedText'>待开奖</text>
+                </view>
+                <view class='swiperIcon'>
+                  <view></view>
+                  <view></view>
+                </view>
+              </view>
+            </swiper-item>
+            <swiper-item>
+              <view class='swiperEnve'>
+                <view class='swiperIcon'>
+                  <view></view>
+                  <view></view>
+                </view>
+                <block wx:if="{{isLottery == 2}}">
+                  <button open-type='share' class='inviteFriends'>
+                    <!-- <text class='inviteTime'>({{countDownNum}}s)</text> -->
+                    <text class='inviteText'>邀请好友助力</text>
+                  </button>
+                  <!-- <block wx:if="{{countDownNum != '0'}}">
+                    <button open-type='share' class='inviteFriends'>
+                      <text class='inviteTime'>({{countDownNum}}s)</text>
+                      <text class='inviteText'>限时邀请好友助力</text>
+                    </button>
+                  </block>
+                  <block wx:else>
+                    <view class='inviteFriends invite_friend'>
+                      <text class='inviteTime'>(0s)</text>
+                      <text class='inviteText'>限时邀请好友助力</text>
+                    </view>
+                  </block> -->
+                </block>
+                <block wx:else>
+                  <button open-type='share' class='inviteFriends'>
+                    <!-- <text class='inviteTime'>({{countDownNum}}s)</text> -->
+                    <text class='inviteText'>邀请好友助力</text>
+                  </button>
+                  <!-- <view class='inviteFriends invite_friend'>
+                    <text class='inviteTime'>(0s)</text>
+                    <text class='inviteText'>限时邀请好友助力</text>
+                  </view> -->
+                </block>
+              </view>
+            </swiper-item>
+          </swiper>
+          <text class='swiperInter'>待开奖{{countDown}}</text>
+        
+        </view>
+      </block>
+
+    </block>
+    
+    <!-- 立即开抢弹框 -->
+    <view class='envelMask' catchtouchmove="ture" wx:if="{{envalMask}}">
+      <image class='envelBgimg' src='../../image/hb_gx@2x.png' bindtap='exitMask'></image>
+      <view class='envalBg'>
+        <image class='evaleImg' src='../../image/hb_bg@2x.png'></image>
+        <view class='welfare'>
+          <image class='welfareImg' src='../../image/home_banner@2x.png'></image>
+          <view class='welf'>
+            <text class='welfareName'>{{activity.adName}}送你一个福利</text>
+            <text class='welfareText'>大红包，快快领取吧！</text>
+          </view>
+          <view class='envelope_welf' bindtap='click' data-appid="{{activity.adAppId}}" data-path="{{activity.adPath}}">
+            <image class='enval_welf' src='../../image/zy_btx@2x.png'></image>
+            <text class='enval_text'>立即领取</text>
+          </view>
+        </view>
+        <image class='exitMask' src='../../image/hb_gb@2x.png' bindtap='exitMask'></image>
+      </view>
+    </view>
+    <view class='envelsMask' catchtouchmove="ture" wx:if="{{envalMask}}" bindtap='exitMask'></view>
+
+    <!-- 已参与人员 -->
+    <view class='participate' bindtap='allParticipate'>
+      <text class='partText'>已有{{activity.activityPeople}}人参与</text>
+      <view class='partImg'>
+        <block wx:for="{{avatar}}" wx:key="{{index}}">
+         <image src='{{item.avatar_url}}' class='partHeadImg'></image>
+        </block>
+      </view>
+      <image class='arrow' src='../../image/xq_jt@2x.png'></image>
+    </view>
+    <!-- 参与总人数 -->
+    <view class='participation' wx:if="{{participation}}" catchtouchmove="ture">
+      <image class='participationIcon' src='../../image/tk_bt@2x.png'></image>
+      <text class='participationText'>已有{{activity.activityPeople}}人参与</text>
+      <scroll-view scroll-y="true" class='drawer' bindscrolltolower="lower">
+        <view class='draPic'>
+          <block wx:for="{{msgList}}" wx:key="{{index}}">
+            <image class='frePics' src='{{item.avatar_url}}'></image>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='participationMask' wx:if="{{participation}}" bindtap='exitPart' catchtouchmove="ture"></view>
+
+  </view>
+
+  <!-- 赞助商介绍 -->
+  <view class='introduction'>
+    <navigator class='introd' target='miniProgram' app-id='{{activity.adAppId}}' open-type="navigate" path="{{activity.adPath}}" extra-data="">
+      <view class='introds'>
+        <image src='{{activity.adIcon}}' class='introdImg'></image>
+        <view class='introduct'>
+          <text class='introdText'>{{activity.adName}}为你助力</text>
+          <text class='probability'>点击可提升30%中奖概率</text>
+        </view>
+      </view>
+      <image src='../../image/xq_bjt@2x.png' class='introdIcon'></image>
+    </navigator>
+    <view class='profile'>
+      <text>{{activity.adDetail}}</text>
     </view>
   </view>
 
-  <view class='detail-prize' wx:if="{{detailMsg.detail.brief != ''}}">
-    <view>奖品介绍：</view>
-    <view>{{detailMsg.detail.brief}}</view>
+  <!-- 详情 -->
+  <view class='details'>
+    <text class='detailsText'>商品详情</text>
+    <block wx:for="{{detail}}" wx:key="{{index}}">
+      <image src='{{item.detail_img_url}}' mode="widthFix"></image>
+    </block>
   </view>
 
-  <view class='detail-company'>
-    <view class='detail-company-1'>赞助商介绍：</view>
-    <view class='detail-company-2'>{{detailMsg.detail.advert_brief}}</view>
-
-    <block wx:if="{{detailMsg.detail.is_gz == 1}}">
-      <view class='aboutBut introds'>
-        <text style='width:64%;height:48rpx;'>{{detailMsg.detail.href_url}}</text>
-        <image src='../../image/Group4@2x.png' data-href="{{detailMsg.detail.href_url}}" bindtap='detaGroup'></image>
+  <!-- 底部悬浮 -->
+  <block wx:if="{{is_luck == 0}}">
+    <!-- 不是当前用户中奖 -->
+    <block wx:if="{{luckUser.isLuck == 0}}">
+      <view class='footer'>
+        <!-- 未中奖 -->
+        <view class='footWon'>
+          <text bindtap='moreDraw' bindtap='moreDraw'>更多抽奖</text>
+        </view>
+         
+        <!-- <view class='footWin'>
+          <text class='moreDraws' bindtap='moreDraw'>更多抽奖</text>
+          <text class='address' bindtap='address'>收货地址</text>
+        </view> -->
       </view>
     </block>
     <block wx:else>
-      <navigator target='miniProgram' app-id='{{detailMsg.detail.app_id}}' data-id='{{detailMsg.detail.id}}' data-index='{{index}}' open-type="navigate" path="{{detailMsg.detail.path}}" extra-data="{{detailMsg.detail.extra_data}}">
-        <view>
-          <image src='{{detailMsg.detail.icon}}'></image>
-          <text>{{detailMsg.detail.name}}</text>
+      <view class='footer'>
+        <!-- 已中奖 -->
+        <view class='footWin'>
+          <text class='moreDraws' bindtap='moreDraw'>更多抽奖</text>
+          <text class='address' bindtap='address'>收货地址</text>
         </view>
-        <view>
-          <text>点击体验</text>
-          <image src='../../image/arrow1.png'></image>
-        </view>
-      </navigator>
+      </view>
     </block>
-  </view>
+  </block>
+  
 
-  <actionSheet id='actionSheet'></actionSheet>
-
-  <ad unit-id="adunit-2a51a9ecc1f5a822"></ad>
-
-  <view class='detail-reserve'>
-    <view class='detail-reserve-con'>
-      <view class='detail-reserve-con-in'>
-
-        <text>规则：邀请5人参与，获奖概率可提升37%</text>
-        <form bindsubmit="submit" report-submit='true'>
-          <block wx:if="{{detailMsg.detail.is_make == 1 }}">
-            <button wx:if="{{ detailMsg.detail.status == 1}}" id='detail-btn-reserve' data-id='{{detailMsg.detail.id}}' form-type="submit" size="mini">预约</button>
-            <button wx:if="{{ detailMsg.detail.status == 2}}" id='detail-btn-reserve' class='btn-reserve' disabled='true' size="mini">预约结束</button>
-            <button wx:if="{{ detailMsg.detail.status == 3}}" id='detail-btn-reserve' class='btn-reserve' type="warn" size="mini">活动结束</button>
-            <button wx:if="{{ detailMsg.detail.status == 4}}" id='detail-btn-reserve' class='btn-reserve' disabled='true' size="mini">活动结束</button>
-          </block>
-          <block wx:if="{{detailMsg.detail.is_make == 2 }}">
-            <button wx:if="{{ detailMsg.detail.status != 3 }}" id='detail-btn-reserve' class='btn-reserve' size="mini" disabled='true'>待开奖</button>
-
-            <block wx:if="{{ detailMsg.detail.status == 3 && detailMsg.detail.is_rush == 1}}">
-              <button wx:if="{{ detailMsg.detail.type == 0}}" id='detail-btn-reserve' data-id='{{detailMsg.detail.id}}' form-type="submit" size="mini">0元购</button>
-              <button wx:if="{{ detailMsg.detail.type == 1}}" id='detail-btn-reserve' data-id='{{detailMsg.detail.id}}' form-type="submit" type="warn" size="mini">抢购</button>
-            </block>
-
-            <button wx:if="{{ detailMsg.detail.status == 4}}" id='detail-btn-reserve' class='btn-reserve' size="mini" disabled='true'>活动结束</button>
-            <button wx:if="{{detailMsg.detail.is_rush == 2}}" id='detail-btn-reserve' class='btn-reserve' type="warn" size="mini" disabled='true'>已抢购</button>
-          </block>
-        </form>
-
-        <button id='detail-btn-share' wx:if="{{detailMsg.detail.is_make == 2 }}" open-type='share' size="mini">
-          <image src='../../image/share.png'></image>好友助力</button>
-      </view>
-
-      <view class='detail-avatar'>
-        <view class='detail-avatar-title'>
-          <image src='../../image/line-left.png'></image>
-          <image src='../../image/detail-avatar.png'></image>
-          <text>已参与</text>
-          <image src='../../image/line-right.png'></image>
-        </view>
-
-        <view class='detail-avatar-b' wx:if='{{wrap}}'>
-          <block wx:for="{{detailMsg.avatar}}" wx:key="{{index}}">
-            <image class='detail-avatar-img' wx:if='{{index < 10 && item != ""}}' src='{{item}}'></image>
-          </block>
-          <view class='more' wx:if='{{detailMsg.avatar.length > 10}}' bindtap='wrap'>•••</view>
-        </view>
-        <view class='detail-avatar-b' wx:else>
-          <block wx:for="{{detailMsg.avatar}}" wx:key="{{index}}">
-            <image class='detail-avatar-img' wx:if='{{item != ""}}' src='{{item}}'></image>
-          </block>
-        </view>
-
-      </view>
-
-    </view>
-  </view>
 </view>
+
 <!-- <actionSheet id='actionSheet'></actionSheet>
 
 <ad unit-id="adunit-2a51a9ecc1f5a822"></ad> -->

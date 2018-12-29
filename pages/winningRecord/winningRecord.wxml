@@ -1,0 +1,92 @@
+<!--pages/winningRecord/winningRecord.wxml-->
+<view class='content'>
+  <view class='contents'>
+    <block wx:for="{{msgList}}" wx:key="{{index}}">
+      <!-- 商品 -->
+      <block wx:if="{{item.type == 20}}">
+        <view class='winning' data-id="{{item.id}}" bindtap='detailList'>
+          <image src='{{item.img_url}}' class='winningIcon'></image>
+          <view class='winningShop'>
+            <text class='winningName'>免费抽奖:{{item.title}}</text>
+            <text class='winningTime'>{{item.lottery_time}} 自动开奖</text>
+            <view class='winner'>
+              <text class='winNum'><text class='number'>￥</text>{{item.price}}</text>
+              <block wx:if="{{item.status == 1}}">
+                <text class='delivery'>未付款</text>
+              </block>
+              <block wx:if="{{item.status == 2}}">
+                <text class='delivery'>待发货</text>
+              </block>
+              <block wx:if="{{item.status == 3}}">
+                <text class='delivery'>已发货</text>
+              </block>
+              <block wx:if="{{item.status == 4}}">
+                <text class='delivery'>已失效</text>
+              </block>
+              <block wx:if="{{item.status == 5}}">
+                <text class='delivery'>0元购待确认</text>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- 红包 -->
+      <block wx:if="{{item.type == 10}}">
+        <view class='winning'>
+          <image src='{{item.img_url}}' class='winningIcon'></image>
+          <view class='winningShop'>
+            <text class='winningName'>{{item.detail}}</text>
+            <text class='winningTime'>{{item.lottery_time}} 领取红包</text>
+            <view class='winner'>
+              <text class='winNums'>{{item.name}}</text>
+              <block wx:if="{{item.status == 20}}">
+                <text class='received'>已领取</text>
+              </block>
+              <block wx:else>
+                <text class='pending' bindtap='recordWinning' data-id="{{item.id}}">待领取</text>
+              </block>
+            </view>
+          </view>
+        </view>
+
+        <!-- 领取红包弹框 -->
+        <view class='winnerMask' catchtouchmove="ture" wx:if="{{winnerMask}}">
+          <view class='envelope'>
+            <image src='../../image/tk_bg@2x.png' class='enveImg'></image>
+            <!-- 收下红包 -->
+            <block wx:if="{{showMoney}}">
+              <view class='envel'>
+                <view class='envel_evs'>
+                  <image class='envel_icon' src='../../image/tk_jb@2x.png'></image>
+                  <text class='envel_text'>{{money}}元</text>
+                  <view class='envel_hong' bindtap='moneyShow'>收下红包</view>
+                </view>
+              </view>
+            </block>
+            <block wx:else>
+              <!-- 红包图片 -->
+              <view class='envel'>
+                <text class="eveet">恭喜获得红包</text>
+                <text class="eveet">点击下方图片后领取</text>
+                <view class='envel_img'>
+                  <image class='lopeimg' src='../../image/tk_kp@2x.png'></image>
+
+                  <view class='lopeshopImg' bindtap='click' data-id="{{item.app_id}}" data-money="{{item.money}}">
+                    <image src='../../image/home_banner@2x.png'></image>
+                  </view>
+
+                </view>
+              </view>
+            </block>
+
+          </view>
+          <image class='exitMask' src='../../image/hb_gb@2x.png' bindtap='exitWinning'></image>
+        </view>
+        <view class='winningMask' catchtouchmove="ture" wx:if="{{winnerMask}}"></view>
+
+      </block>
+    
+    </block>
+
+  </view>
+</view>

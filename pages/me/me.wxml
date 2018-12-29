@@ -1,5 +1,68 @@
 <!--pages/me/me.wxml-->
-<view class='top'>
+<view class='content'>
+  <!-- 头部 -->
+  <view class='header'>
+    <image class='headImg' src='../../image/Group_16@2x.png'></image>
+    <view class='headCont'>
+      <image src='../../image/Group_15@2x.png' class='headContImg'></image>
+      <view class='head_Header'>
+        <view class='headInter'>
+          <open-data type='userAvatarUrl'></open-data>
+          <open-data type='userNickName'></open-data>
+        </view>
+        <view class='rule'>
+          <text class='headRule' bindtap='raiders'>规则</text>
+        </view>
+      </view>
+      <view class='account'>
+        <view class='accountMoney'>
+          <text class='accontText'>账户余额</text>
+          <view class='accont_money'>
+            <text class='moneyText'>{{wallet}}</text>
+            <image class='moneyImg' src='../../image/Group_6@2x.png'></image>
+          </view>
+        </view>
+        <view class='accountIntegral'>
+          <text class='accontText'>现有积分</text>
+          <view class='accont_money'>
+            <text class='moneyText'>{{integral}}</text>
+            <image class='integralImg' src='../../image/Group_6_Copy@2x.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 全部抽奖 -->
+  <view class='allDraws'>
+    <view class='all_draw' bindtap='allDraw'>
+      <image class='drawImg' src='../../image/my_qbcj@2x.png'></image>
+      <text class='drawText'>全部抽奖</text>
+    </view>
+    <view class='all_draw' bindtap='pointRecord'>
+      <image class='drawImg' src='../../image/my_jfjl@2x.png'></image>
+      <text class='drawText'>积分记录</text>
+    </view>
+    <view class='all_draw' bindtap='winningRecord'>
+      <image class='drawImg' src='../../image/my_zjjl@2x.png'></image>
+      <text class='drawText'>中奖记录</text>
+    </view>
+  </view>
+  <!-- 收货地址/个人信息 -->
+  <view class='line'></view>
+  <view class='address'>
+    <view class='myAddress' bindtap='information'>
+      <text>我的信息</text>
+      <image src='../../image/Page_1@2x.png'></image>
+    </view>
+    <button class='myAddress' open-type='contact'>
+      <text>联系客服</text>
+      <image src='../../image/Page_1@2x.png'></image>
+    </button>
+  </view>
+
+</view>
+
+<!-- <view class='top'>
   <open-data type='userAvatarUrl'></open-data>
   <open-data type='userNickName'></open-data>
 </view>
@@ -43,4 +106,4 @@
     <image class='con-arr' src='../../image/me-arrow.png'></image>
   </button>
 
-</view>
+</view> -->

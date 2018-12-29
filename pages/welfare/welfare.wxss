@@ -1,0 +1,72 @@
+/* pages/welfare/welfare.wxss */
+.content{
+  background: #f5f5f5;
+}
+.header{
+  width: 100%;
+  height: 350rpx;
+}
+.welfareCont{
+  position: absolute;
+  top: 310rpx;
+  left: 30rpx;
+  width: 92%;
+}
+.welfare{
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.welfareLeft{
+  display: flex;
+  width: 70%;
+}
+.weIcon{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+}
+.weText{
+  margin-left: 14rpx;
+}
+.weName{
+  margin-top: 4rpx;
+  font-size:30rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+  display: block;
+}
+.weDes{
+  margin-top: 12rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #999;
+  display: block;
+}
+.welfareRight{
+  margin-top: 24rpx;
+  height: 100%;
+}
+.welfText{
+  padding: 16rpx 28rpx;
+  background:linear-gradient(316deg,rgba(169,130,255,1) 0%,rgba(226,142,254,1) 100%);
+  border-radius:30rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+}
+.received{
+  padding: 16rpx 28rpx;
+  background:#CCCCCC;
+  border-radius:30rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #fff;
+}

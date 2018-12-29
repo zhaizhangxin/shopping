@@ -1,0 +1,49 @@
+/* pages/information/information.wxss */
+page{
+  background: #f5f5f5;
+}
+.content{
+  background: #f5f5f5;
+}
+
+.inforCont{
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 30rpx;
+  padding: 34rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.inforText{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #333;
+}
+.contText{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #333;
+  width: 60%;
+  text-align: right;
+}
+.contTexts{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #333;
+  text-align: right;
+  width: 60%;
+}
+.mationCont{
+  margin: 0 30rpx;
+  border-radius: 20rpx;
+}
+.mation{
+  display: flex;
+  justify-content: space-between;
+  padding: 34rpx 30rpx;
+  background: #fff;
+}
+.inforImg{
+  width: 50rpx;
+  height: 50rpx;
+}

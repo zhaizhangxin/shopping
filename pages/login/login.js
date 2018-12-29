@@ -27,7 +27,7 @@ Page({
       wx.setStorageSync('nickName', e.detail.userInfo.nickName)
 
       wx.request({
-        url: reqUrl + 'setinfo',
+        url: reqUrl + 'go_setinfo',
         data: {
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
@@ -78,7 +78,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    // wx.switchTab({
+    //   url: '../index/index',
+    // })
+    // console.log(options);
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -86,43 +89,31 @@ Page({
 
     //异步登录执行完的 resolve 
     getApp().login().then(res => {
-      
       wx.hideLoading()
-
       if (res.statusCode == 200) {
-
-        //判断用户是否授权，决定是否显示授权页面
-        if (wx.getStorageSync("nickName")) {
-          wx.switchTab({
-            url: '../index/index',
-          })
-        }
-
-
+        wx.switchTab({
+          url: '../index/index',
+        })
       } else {
-
         wx.showToast({
           title: res.data.msg,
           icon: 'none',
           duration: 1000
         })
-
       }
-
     })
   
-    
 
-    // wx.getSetting({
-    //   success: res => {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       wx.switchTab({
-    //         url: '../index/index',
-    //       })
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.switchTab({
+            url: '../index/index',
+          })
 
-    //     }
-    //   }
-    // })
+        }
+      }
+    })
 
   },
 

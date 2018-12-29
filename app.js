@@ -23,10 +23,10 @@ App({
       // 登录
       wx.login({
         success: res => {
-
+          wx.setStorageSync('code', res.code);
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
-            url: reqUrl + 'token',
+            url: reqUrl + 'go_token',
             data: {
               code: res.code
             },
@@ -34,7 +34,7 @@ App({
             dataType: 'json',
             responseType: 'text',
             success: res => {
-
+              console.log(res);
               if (res.statusCode == 200) {
 
                 //本地缓存存入token、uid

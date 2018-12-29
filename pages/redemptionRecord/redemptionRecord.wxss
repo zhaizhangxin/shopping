@@ -1,0 +1,68 @@
+/* pages/redemptionRecord/redemptionRecord.wxss */
+page{
+  background: #f5f5f5;
+}
+.content{
+  background: #f5f5f5;
+}
+
+.msgLength{
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.conts{
+  margin: 0 30rpx;
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 30rpx;
+  display: flex;
+  border-radius: 20rpx;
+}
+.contsImg{
+  width: 210rpx;
+  height: 210rpx;
+}
+.contsRight{
+  margin-left: 16rpx;
+  width: 62%;
+}
+.contName{
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+  display: block;
+}
+.cont_redemp{
+  margin-top: 30rpx;
+  display: flex;
+}
+.redempIcon{
+  margin-top: 6rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.redempText{
+  margin-left: 10rpx;
+  font-size:22rpx;
+  font-family:MicrosoftYaHei;
+  color: #999;
+}
+.redemp_prod{
+  margin-left: 10rpx;
+  font-size:22rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #FF646A;
+}
+.cont_detil{
+  margin-top: 60rpx;
+  font-size:38rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #999;
+  display: block;
+}

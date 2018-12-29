@@ -1,0 +1,5 @@
+<!--pages/raiders/raiders.wxml-->
+<view class='content'>
+  <image src='../../image/gz_bg@2x.png'></image>
+</view>
+

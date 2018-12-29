@@ -1,0 +1,25 @@
+<!--pages/information/information.wxml-->
+<view class='content'>
+  <view class='inforCont'>
+    <view class='inforText'>联系方式</view>
+    <view class='contTexts'>{{msgList.mobile}}</view>
+  </view>
+  <view class='mationCont'>
+    <view class='mation'>
+      <view class='inforText'>赞助商名称</view>
+      <view class='contTexts'>{{msgList.name}}</view>
+    </view>
+    <view class='mation'>
+      <view class='inforText'>logo</view>
+      <image class='inforImg' src='{{msgList.logo}}'></image>
+    </view>
+    <view class='mation'>
+      <view class='inforText'>宣传（slogan）</view>
+      <view class='contText'>{{msgList.slogan}}</view>
+    </view>
+    <view class='mation'>
+      <view class='inforText'>详细描述</view>
+      <view class='contText'>{{msgList.detail}}</view>
+    </view>
+  </view>
+</view>

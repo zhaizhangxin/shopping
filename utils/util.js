@@ -30,7 +30,15 @@ function formatLocation(longitude, latitude) {
   }
 }
 
+//将数字转换成金额显示
+function toMoney(fen) {
+  var yuan = fen / 100.0;
+  return yuan.toFixed(2);
+}
+
+
 module.exports = {
   formatTime: formatTime,
-  formatLocation: formatLocation
+  formatLocation: formatLocation,
+  toMoney: toMoney
 }
