@@ -5,7 +5,7 @@
 /* 头部 */
 .header{
   position: relative;
-  height: 562rpx;
+  height: 516rpx;
 }
 .headImg{
   width: 100%;
@@ -16,7 +16,7 @@
   top: 242rpx;
   left: 30rpx;
   width: 690rpx;
-  height: 320rpx;
+  height: 272rpx;
 }
 .contsIcon{
   position: absolute;
@@ -28,30 +28,46 @@
 .cont_inter{
   position: absolute;
   width: 100%;
+  padding: 30rpx 0;
 }
 .contIcon{
   display: flex;
   justify-content: space-around;
 }
-.homePage{
-  width: 172rpx;
-  height: 172rpx;
+
+.contImg{
+  display: flex;
+  display: -webkit-flex;
+}
+.contImg image{
+  width: 124rpx;
+  height: 124rpx;
+}
+.contImg text{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #5D6977;
+  line-height: 96rpx;
 }
 
-
 .contAccount{
-  margin: 62rpx 30rpx 30rpx 30rpx;
+  margin: 40rpx 30rpx 30rpx 30rpx;
   display: flex;
   justify-content: space-between;
   height: 56rpx;
   line-height: 56rpx;
 }
+
 .contSalance{
   display: flex;
+  display: -webkit-flex;
 }
 .salanceIcon{
-  width: 150rpx;
-  height: 56rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #5D6977;
 }
 .salanceNum{
   margin-left: 12rpx;
@@ -64,95 +80,102 @@
 
 .contIntegral{
   display: flex;
+  margin-left: 36rpx;
 }
 .integralIcon{
   width: 50rpx;
   height: 50rpx;
 }
+
+.interal{
+  display: flex;
+  display: -webkit-flex;
+}
 .integralNum{
   margin-left: 12rpx;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #5D6977;
+}
+.inter_num{
+  margin-left: 12rpx;
   display: block;
-  font-size:28rpx;
+  font-size:45rpx;
   font-family:MicrosoftYaHei-Bold;
-  font-weight:bold;
+  /* font-weight:bold; */
   color: #D48031;
 }
 
 /* 列表 */
 .contColls{
-  padding: 0 30rpx;
+  padding: 0 30rpx 30rpx 30rpx;
 }
 .contColl{
+  position: relative;
   margin-top: 30rpx;
   padding: 30rpx;
   background: #fff;
   border-radius: 20rpx;
   display: flex;
 }
+.collSponsor{
+  position: absolute;
+  top: 0;
+  /* padding: 14rpx 50rpx; */
+  width: 300rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #fff;
+}
+.collSponsor image{
+  width: 100%;
+  height: 100%;
+}
+.sponsorText{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
+
 .collImg{
   width: 210rpx;
   height: 210rpx;
+  border-radius: 10rpx;
+  
 }
 .collRight{
-  margin-left: 20rpx;
-  width: 64%;
+  margin-left: 40rpx;
+  width: 60%;
 }
 .collName{
-  font-size:28rpx;
-  font-family:MicrosoftYaHei;
-  color: #333;
+  margin-top: 70rpx;
+  font-size:38rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
   display: block;
 }
 .collTime{
-  margin: 10rpx 0;
-  font-size:20rpx;
-  font-family:MicrosoftYaHei;
+  margin-top: 50rpx;
   color: #999;
   display: block;
-}
-.collPropre{
-  display: flex;
-}
-.propreIcon{
-  width: 18rpx;
-  height: 26rpx;
-}
-.collPropre text{
-  margin-left: 10rpx;
-  font-size:20rpx;
-  font-family:MicrosoftYaHei;
-  color: #FF646A;
-  display: block;
-}
-.collNum{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50rpx;
-}
-.originalNum{
-  font-size:40rpx;
+  font-size:24rpx;
   font-family:PingFangSC-Regular;
-  color: #FF646A;
+  font-weight:400;
 }
-.yuan{
-  font-size: 30rpx;
-}
-.originalIcon{
-  padding: 10rpx 32rpx;
-  background:linear-gradient(315deg,rgba(255,91,98,1) 0%,rgba(255,161,68,1) 100%);
-  border-radius:30rpx;
-  font-size:28rpx;
-  font-family:PingFangSC-Regular;
-  color: #fff;
-}
-.originalIcons{
-  padding: 10rpx 32rpx;
-  background: #ccc;
-  border-radius:30rpx;
-  font-size:28rpx;
-  font-family:PingFangSC-Regular;
-  color: #fff;
-}
+
+
+
+
+
+
 
 /* 签到 */
 .signMask{
@@ -203,212 +226,3 @@
   text-align: center;
   display: block;
 }
-
-
-
-
-/* .top-share{
-  width: 690rpx;
-  height: 70rpx;
-  margin: 20rpx auto 0;
-  display: flex;
-  align-items: center;
-  border-radius: 10rpx;
-  background-color: #fff;
-}
-.top-share image{
-  width: 40rpx;
-  height: 40rpx;
-}
-.top-share image:first-of-type{
-  margin: 0 8rpx 0 20rpx;
-}
-.top-share image:last-of-type{
-  margin: 0 20rpx 0 8rpx;
-}
-.top-text1{
-  display: block;
-  font-size: 36rpx;
-  color: rgb(232,54,42);
-  text-align: right;
-}
-.top-text2{
-  text-align: right;
-  flex: 1;
-  font-size: 28rpx;
-  color: rgb(51,51,51);
-}
-#detail-btn-share{
-  margin: 0;
-  padding: 0;
-  width: 60rpx;
-  height: 40rpx;
-  background-color: rgba(255, 255, 255, 0);
-  color:rgb(232, 54, 42);
-}
-#detail-btn-share image{
-  margin-bottom: 25rpx;
-}
-
-.banner-swiper swiper{
-  width:690rpx;
-  height:276rpx;
-  margin: 0 auto;
-  box-shadow:0px 4px 6px rgba(222,222,222,0.9);
-  background-color:rgba(255,255,255,0); 
-  border-radius: 20rpx;
-  padding-top:20rpx; 
-} 
-.banner-swiper .wx-swiper-dot{
-    width:14rpx;
-    height:7rpx;
-    border-radius:2px;
-}
-.banner-swiper swiper-item image{
-  width:690rpx;
-  height:276rpx;
-  border-radius: 20rpx;
-}
-
-
-.roll-swiper{
-  width:690rpx;
-  height:70rpx;
-  border-radius:35rpx;
-  background-color: #fff;
-  margin:20rpx auto;
-  box-shadow:0 2px 4px rgba(222,222,222,0.7);
-  overflow:hidden;
-}
-.roll-swiper swiper-item{
-  display:flex;
-  justify-content:flex-start;
-  align-items:center;
-  font-size:24rpx;
-}
-.roll-swiper .roll-avatar{
-  width:50rpx;
-  height:50rpx;
-  border-radius:25rpx;
-  margin: 0 15rpx;
-}
-.roll-swiper swiper-item text{
-  font-weight:bold;
-  color:#ff3535;
-}
-.roll-nickName,.roll-con{
-  max-width:160rpx;
-  overflow:hidden; 
-  white-space:nowrap;
-  text-overflow:ellipsis;  
-  margin-right:10rpx;
-}
-.roll-con{
-  max-width:560rpx;
-}
-.roll-h{
-  margin-right:50rpx; 
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.act-con{
-  width: 690rpx;
-  margin: 20rpx auto 20rpx;
-  border-radius: 20rpx;
-  box-shadow:0 2px 4px rgba(222,222,222,0.7);
-  overflow: hidden;
-  background-color:#fff; 
-}
-.act-con:last-of-type{
-  margin-bottom: 20rpx;
-}
-.act-con-t{
-  position: relative;
-}
-.act-con-t image{
-  width: 100%;
-  height: 280rpx;
-}
-button::after{
-  border:none;
-}
-.act-con-t button{
-  width: 140rpx;
-  height: 60rpx;
-  line-height:60rpx;
-  font-size:26rpx;
-  color: #fff;
-  text-align: center;
-  background-color:#e8362a;
-  border-radius:8rpx;
-  position: absolute;
-  bottom:20rpx;
-  right:20rpx;
-  padding:0;
-}
-.act-con-b{
-  display: flex;
-  justify-content:space-between;
-  margin:15rpx 15rpx 20rpx;
-  font-size:24rpx;
-}
-.act-con-b-l view:nth-of-type(1){
-  width: 500rpx;
-  overflow: hidden;
-  color:rgb(51, 51, 51);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.act-con-b-l view:nth-of-type(2){
-  margin-top:15rpx;
-  color:rgb(102,102,102);
-}
-.act-con-b-l view:nth-of-type(2) text{
-  color:rgb(255,50,43);
-}
-.act-con-b-l view:nth-of-type(3){
-  margin-top:10rpx;
-  color:rgb(102,102,102);
-}
-.act-con-b-l view:nth-of-type(3) text{
-   color:rgb(255,50,43);
-}
-.act-con-b-r view{
-  color:rgb(255,50,43);
-  text-align: right;
-  font-size:32rpx;
-}
-.act-con-b-r view text{
-  font-size:24rpx;
-}
-.act-con-b-r navigator{
-  margin-top:10rpx;
-  color:#e1c6b1;
-}
-
-.act-con-avatar {
-  display: flex;
-  align-items: center;
-  padding-bottom:15rpx; 
-}
-.act-con-avatar .success{
-  font-size: 24rpx;
-  color: rgb(16, 169, 84);
-  margin:0 20rpx;
-}
-.act-con-avatar .success image{
-  width: 38rpx;
-  height: 25rpx;
-  margin-right: 10rpx;
-}
-.act-con-avatar .more{
-  color: #999;
-}
-.act-con-avatar .ava{
-  width: 50rpx;
-  height: 50rpx;
-  border-radius: 25rpx;
-  margin-right:-10rpx;
-} */

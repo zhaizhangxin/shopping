@@ -221,9 +221,10 @@ Page({
           let datas = res.data.msg.activity;
           let lottery_time = 'res.data.msg.activity.lottery_time';
           let price = 'res.data.msg.activity.price';
+          
           for (let i = 0; i < datas.length; i++) {
-            datas[i]["lottery_time"] = formatTimes.formatTimeTwo(datas[i]["lottery_time"], 'Y年M月D日 h:m');
-            datas[i]["price"] = formatTime.toMoney(datas[i]["price"]);
+            datas[i]["lottery_time"] = formatTimes.formatTimeTwo(datas[i]["lottery_time"], 'M月D日 h:m');
+            // datas[i]["price"] = formatTime.toMoney(datas[i]["price"]);
           }
           
           let wallets = res.data.msg.wallet;
@@ -235,7 +236,7 @@ Page({
             activity: res.data.msg.activity, //活动信息
             signIn: res.data.msg.signIn,
             [lottery_time]: datas,
-            [price]:datas
+            // [price]:datas
           })
 
         } else {

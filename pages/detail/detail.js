@@ -23,14 +23,32 @@ Page({
     participation:false,
     report:true,//抽奖是否授权
   },
+// 一键复制
+  detaGroup: function (e) {
+    // console.log(e);
+    var detaGroup = e.currentTarget.dataset.href;
+    wx.setClipboardData({
+      data: detaGroup,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+            // console.log(res);
+          }
+        })
+      }
+    })
+  },
+
   // 领取福利
   envalColl:function(e){
-    console.log(e);
+    // console.log(e);
     let formId = e.detail.formId;
     this.setData({
       envalMask:true,
       formId: formId
     })
+    this.lottery();
+    
   },
   // 关闭福利弹框
   exitMask:function(){
@@ -47,7 +65,7 @@ Page({
       appId: appid,
       path: path,
       success: res => {
-        this.lottery();
+        // this.lottery();
         this.setData({
           envalMask: false,
           enval:1
@@ -61,7 +79,6 @@ Page({
   
   // 点击抽奖
   lottery:function(){
-    console.log(221);
     wx.request({
       url: reqUrl + 'lottery/' + this.data.options.id,
       header: {
@@ -99,7 +116,7 @@ Page({
 
   // 倒计时
   countDowns:function(){
-    console.log(111);
+    // console.log(111);
     let that = this;
     let countDownNum = that.data.countDownNum;
     that.setData({
@@ -123,7 +140,7 @@ Page({
   },
   // 收货地址
   address:function(){
-    console.log(this.data.options.type)
+    // console.log(this.data.options.type)
     wx.navigateTo({
       url: '../confirmOrder/confirmOrder?type=' + this.data.options.type + '&typeid=' + this.data.options.id,
     })
@@ -182,7 +199,7 @@ Page({
       wx.setStorageSync('nickName', e.detail.userInfo.nickName)
 
       wx.request({
-        url: reqUrl + 'go_setinfo',
+        url: reqUrl + 'setinfo',
         data: {
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
@@ -227,7 +244,7 @@ Page({
     * 生命周期函数--监听页面加载
     */
   onLoad: function (options) {
-    console.log(options);
+    // console.log(options);
     let option_in = options;
     this.setData({
       options: options
@@ -247,6 +264,40 @@ Page({
 
   },
 
+  // 分享抽奖
+  shareApp: function (e) {
+    let id = e.currentTarget.dataset.id;
+    // console.log(id);
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    wx.request({
+      url: reqUrl + 'shareAward',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      data: {
+        type: id
+      },
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: res => {
+        wx.hideLoading();
+        if (res.data.error_code == 0) {
+
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            mask: true
+          })
+        }
+      }
+    })
+  },
+
   details:function(){
     wx.showLoading({
       title: '加载中...',
@@ -254,7 +305,7 @@ Page({
     })
    
     wx.request({
-      url: reqUrl + 'go_detail/' + this.data.options.id + '/' + this.data.options.uid,
+      url: reqUrl + 'detail/' + this.data.options.id + '/' + this.data.options.uid,
       header: {
         token: wx.getStorageSync('token')
       },
@@ -310,7 +361,7 @@ Page({
               luckUser: res.data.msg.luckUser,
               is_luck: 0
             })
-            console.log(this.data.luckUser);
+            // console.log(this.data.luckUser);
           }
         } else {
           wx.showToast({
@@ -379,16 +430,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    console.log(this.data.shareImg);
+    // console.log(this.data.shareImg);
     var id = this.data.options.id
-    console.log(id);
-    console.log(wx.getStorageSync('uid'));
+    // console.log(id);
+    // console.log(wx.getStorageSync('uid'));
     return {
       title: wx.getStorageSync('nickName') + '正在参与抽奖，拜托你为他助力',
       imageUrl: this.data.shareImg,
       // path: '/pages/share/share?aid=' + id + '&uid=' + wx.getStorageSync('uid'),
       path: '/pages/share/share?aid=' + id + '&uid=' + wx.getStorageSync('uid') + '&pathId=' + 1,
     }
+
+    
 
     
   }

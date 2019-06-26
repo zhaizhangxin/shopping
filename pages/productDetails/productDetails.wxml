@@ -1,32 +1,19 @@
-<!--pages/productDetails/productDetails.wxml-->
+ <!--pages/productDetails/productDetails.wxml-->
 <view class='content'>
   <!-- 头部 -->
   <view class='cont_cont'>
     <image class='headImg' src='{{msgList.productImg}}'></image>
     <view class='contDetail'>
-      <view class='detailName'>
-        <text class='shopName'>免费抽奖:{{msgList.title}}</text>
-        <text class='marketPrice'>市场价￥{{to_price}}</text>
-      </view>
-      <text class='numbers'>已经有{{msgList.count}}人兑换</text>
+      <text class='shopName'>{{msgList.title}}</text>
       <view class='product_details'>
-        <view class='product_name'>
-          <image class='product_icon' src='../../image/dhsc_jf@2x.png'></image>
-          <text class='product_prod'>积分兑换</text>
-          <text class='product_num'>{{msgList.integral}}积分</text>
-        </view>
-
-        <view class='products_name'>
-          <image class='product_icon' src='../../image/dhsc_xjcopy@2x.png'></image>
-          <text class='product_prod'>现金兑换</text>
-          <text class='product_num'>{{to_balance}}元</text>
-        </view>
+        <image class='product_icon' src='../../image/home_jf@2x.png'></image>
+        <text class='product_num'>{{msgList.integral}}积分</text>
       </view>
     </view>
   </view>
   <!-- 商品详情 -->
   <view class='details'>
-    <text class='details_text'>商品详情</text>
+    <image src='../../image/xq_bt3@2x.png' class='details_text' style='width:273rpx;'></image>
     <block wx:for="{{msgList.productDetail}}" wx:key="{{index}}">
       <image src='{{item.detail_img_url}}' mode="widthFix"></image>
     </block>
@@ -56,8 +43,14 @@
 
   <!-- 底部悬浮 -->
   <view class='footer'>
-    <view class='footer_fot'>
-      <block wx:if="{{user_Integral == 1}}">
+    <block wx:if="{{user_Integral == 1}}">
+      <view class='footer_fot' bindtap='redeemGoods' data-id="{{msgList.id}}">马上兑换</view>    
+    </block>
+    <block wx:else>
+      <view class='footer_prods'>积分不足</view>    
+    </block>
+    
+      <!-- <block wx:if="{{user_Integral == 1}}">
         <view class='footer_prod' bindtap='redeemGoods' data-id="{{msgList.id}}">积分兑换</view>
       </block>
       <block wx:else>
@@ -68,8 +61,7 @@
       </block>
       <block wx:else>
         <view class='footer_texts'>现金不足</view>
-      </block>
-    </view>
+      </block> -->
   </view>
 
 </view>

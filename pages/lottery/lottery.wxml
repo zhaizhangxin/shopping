@@ -2,51 +2,71 @@
 <view class='content'>
   <form bindsubmit='formSubmit'>
     <view class='section'>
-      <view class='sectionTitle'>请填写您的联系方式</view>
-      <input name="mobile" placeholder='请填写您的联系方式' type='number' maxlength="11" placeholder-class="input-placeholder" bindinput="bindKeyInput"></input>
+      <view class='sectionTitle'>奖品名称</view>
+      <input name="product_name" placeholder='请填奖品名称' placeholder-class="input-placeholder"></input>
     </view>
     <view class='sections'>
       <view class='sectionCont'>
-        <view class='sectionTitle'>赞助商名称</view>
-        <textarea name="name" placeholder='请填写' placeholder-class="input-placeholder" auto-height="true"></textarea>
+        <view class='sectionTitle'>奖品数量</view>
+        <input name="product_num" placeholder='个' placeholder-class="input-placeholder" auto-height="true" type='number'></input>
       </view>
-      <view class='sectionCont'>
-        <view class='sectionTitle'>logo</view>
-        <view class='select' bindtap='chooseImage'>
-          <block wx:if="{{tempFilePaths != '' && tempFilePaths != undefined}}">
-            <image class='seleLogo' src='{{tempFilePaths}}'></image>
-          </block>
-          <block wx:else>
-            <text class='selectText'>请选择</text>
-            <image class='selectImg' src='../../image/fqcj_jt@2x.png'></image>
-          </block>
+
+      <view class='sectionCont' style='display:block'>
+        <view class='sectionTitle'>奖品图片</view>
+
+        <view class='revieImg'>
+          <view class='image' wx:for="{{img_url}}" wx:key="{{index}}">
+            <image class='moment_img' src='{{item}}'></image>
+          </view>
+          <view class='image' style='display:{{hideAdd?"none":"block"}}'>
+            <image src='../../image/pl_tj@2x.png' bindtap='chooseImage' class='moment_img'></image>
+          </view>
         </view>
       </view>
+
       <view class='sectionCont'>
-        <view class='sectionTitle'>宣传（slogan）</view>
-        <textarea name="slogan" placeholder='不超过30个字' maxlength="30" auto-height="true" placeholder-class="input-placeholder"></textarea>
+        <view class='sectionTitle'>是否小程序跳转</view>
+        <input name="path" placeholder='请填写小程序URL' placeholder-class="input-placeholder"></input>
       </view>
+
       <view class='sectionCont'>
-        <view class='sectionTitle'>详细描述</view>
-        <textarea name="detail" placeholder='不超过200个字' auto-height="true" maxlength="200" placeholder-class="input-placeholder"></textarea>
+        <view class='sectionTitle'>APPID</view>
+        <input name="appid" placeholder='请填写小程序APPID' placeholder-class="input-placeholder"></input>
       </view>
-      <radio-group class="radio-group" bindchange="radioChange" name="is_miniprogram">
-        <label wx:for="{{cartArr}}" wx:key="{{index}}">
-          <view class='sectionCont'>
-            <view class='sectionTitle'>{{item.title}}</view>
-            <radio value='{{index}}' color='#FF646A'></radio>
-          </view>
-        </label>
-      </radio-group>
+
+
+      <view class='sectionCont'>
+        <view class='sectionTitle'>开奖时间</view>
+        <view class='select'>
+          <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+            <view class="tui-picker-detail">
+              <block wx:if="{{data_times == 0}}">
+                <text class='selectText'>请选择</text>
+                <image class='selectImg' src='../../image/fqcj_jt@2x.png'></image>
+              </block>
+              <block wx:else>
+               {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+              </block>
+            </view>
+          </picker>
+          <input name="lottery_time" style='display:none;' value='{{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}'></input>
+         
+        </view>
+      </view>
+
+      <view class='sectionCont'>
+        <view class='sectionTitle'>赞助商</view>
+        <input name="name" placeholder='请填写赞助商名称' placeholder-class="input-placeholder"></input>
+      </view>
     </view>
     <view class='btn_area'>
-      <block wx:if="{{phone}}">
+      <!-- <block wx:if="{{inputText}}">
         <button class='btn1'>确认提交</button>
       </block>
-      <block wx:else>
+      <block wx:else> -->
         <button form-type='submit' class='btn2'>确认提交</button>
-      </block>
+      <!-- </block> -->
     </view>
-    <text class='btnText'>确认提交后客服人员尽快与您联系</text>
+    <!-- <text class='btnText'>确认提交后客服人员尽快与您联系</text> -->
   </form>
 </view>

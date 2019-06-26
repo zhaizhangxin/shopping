@@ -1,28 +1,24 @@
 <!--pages/allDraws/allDraws.wxml-->
 <view class='content'>
   <block wx:for="{{msgList}}" wx:key="{{index}}">
-    <view class='contShop' data-id='{{item.id}}' bindtap='detailList'>
-      <image class='shopImg' src='{{item.img_url}}'></image>
-      <view class='shopping'>
-        <text class='shopName'>免费抽奖:{{item.title}}</text>
-        <text class='shopTime'>{{item.lottery_time}} 自动开奖</text>
-        <view class='shopPorper'>
-          <view class='poperShop'>
-            <image class='porperIcon' src="../../image/home_rd@2x.png"></image>
-            <text class='porperText'>{{item.purchase_num}}人在抢</text>
-          </view>
-          <view></view>
+    <view class='contColl' bindtap='detailList' data-id="{{item.id}}">
+      <image src='{{item.img_url}}' class='collImg' mode='aspectFill'></image>
+      <view class='collRight'>
+        <view class='collSponsor'>
+          <image src='../../image/home_zzs@2x.png'></image>
+          <view class='sponsorText'>{{item.name}}赞助</view>
         </view>
+        <text class='collName'>{{item.title}}</text>
         <view class='shopNum'>
-          <text class='shopMoney'><text class='yuan'>￥</text>{{item.price}}</text>
+          <text class='collTime'>{{item.lottery_time}} 自动开奖</text>
           <block wx:if="{{item.status == 0}}">
             <text class='shopinter'>未中奖</text>
           </block>
           <block wx:if="{{item.status == 1}}">
-            <text class='shopinter'>已中奖</text>          
+            <text class='shopinter'>已中奖</text>
           </block>
           <block wx:if="{{item.status == 2}}">
-            <text class='shopinter'>待开奖</text>          
+            <text class='shopinter'>待开奖</text>
           </block>
         </view>
       </view>

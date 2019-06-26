@@ -8,13 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
-  },
-  // 攻略
-  raiders: function () {
-    wx.navigateTo({
-      url: '../raiders/raiders',
-    })
+    award_count:'',
+    draw_count:'',
+    integral_count:''
   },
   // 全部抽奖
   allDraw:function(){
@@ -60,11 +56,10 @@ Page({
       success:res =>{
         wx.hideLoading();
         if (res.data.error_code == 0){
-          let wallets = res.data.msg.wallet;
-          let wallet = formatTime.toMoney(wallets);
           this.setData({
-            wallet: wallet,//余额
-            integral: res.data.msg.integral//积分
+            award_count: res.data.msg.award_count,
+            draw_count: res.data.msg.draw_count,
+            integral_count: res.data.msg.integral_count
           })
         }else{
           wx.showToast({

@@ -41,6 +41,7 @@ Page({
     console.log(e)
     let id = e.currentTarget.dataset.id;
     let money = e.currentTarget.dataset.money;
+    money = formatTime.toMoney(money)
     wx.navigateToMiniProgram({
       appId: id,
       success: res => {

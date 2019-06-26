@@ -4,49 +4,55 @@
   <!-- 头部 -->
   <view class='header'>
     <image src='../../image/home_banner@2x.png' class='headImg' bindtap='raiders'></image>
+
     <view class='contInter'>
-      <image src='../../image/home_bg@2x.png' class='contsIcon'></image>
+      <image src='../../image/Group_25@2x.png' class='contsIcon'></image>
       <view class='cont_inter'>
         <view class='contIcon'>
-          <image src='../../image/home_wyssy@2x.png' class='homePage' bindtap='lottery'></image>
-          <image src='../../image/home_flsc@2x.png' class='homePage' bindtap='welfareMall'></image>
+          <view class='contImg' bindtap='lottery'>
+            <image src='../../image/Group_31@2x.png'></image>
+            <text>我要上首页</text>
+          </view>
+           <view class='contImg' bindtap='welfareMall'>
+            <image src='../../image/Group_4@2x.png'></image>
+            <text>福利商城</text>
+          </view>
         </view>
         <view class='contAccount'>
-          <view class='contSalance'>
-            <image src='../../image/home_zhye@2x.png' class='salanceIcon'></image>
+          <!-- <view class='contSalance'>
+            <text class='salanceIcon'>账户余额(元):</text>
             <text class='salanceNum'>{{wallet}}</text>
-          </view>
+          </view> -->
           <view class='contIntegral'>
             <image src='../../image/home_jf@2x.png' class='integralIcon'></image>
-            <text class='integralNum'>积分：{{integral}}</text>
+            <view class='interal'>
+              <text class='integralNum'>积分:</text>
+              <text class='inter_num'>{{integral}}</text>
+            </view>
           </view>
         </view>
       </view>
     </view>
+
   </view>
 
   <!-- 列表 -->
   <view class='contColls'>
     <block wx:for="{{activity}}" wx:key="{{index}}">
       <view class='contColl' bindtap='details' data-id="{{item.id}}">
-        <image src='{{item.img_url}}' class='collImg'></image>
+        <image src='{{item.img_url}}' class='collImg' mode='aspectFill'></image>
+
         <view class='collRight'>
-          <text class='collName'>免费抽奖:{{item.title}}</text>
+          <view class='collSponsor'>
+            <image src='../../image/home_zzs@2x.png'></image>
+            <view class='sponsorText'>{{item.name}}赞助</view>
+          </view>
+
+          <text class='collName'>{{item.title}}</text>
           <text class='collTime'>{{item.lottery_time}} 自动开奖</text>
-          <view class='collPropre'>
-            <image src='../../image/home_rd@2x.png' class='propreIcon'></image>
-            <text>{{item.purchase_num}}人在抢</text>
-          </view>
-          <view class='collNum'>
-            <text class='originalNum'><text class='yuan'>￥</text>{{item.price}}</text>
-            <block wx:if="{{item.is_join == 0}}">
-              <text class='originalIcon'>消耗{{item.integral}}积分</text>
-            </block>
-            <block wx:else>
-              <text class='originalIcons'>已参与</text>            
-            </block>
-          </view>
+
         </view>
+        
       </view>
     </block>
   </view>

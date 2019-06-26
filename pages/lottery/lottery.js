@@ -1,5 +1,7 @@
 // pages/lottery/lottery.js
 const reqUrl = require('../../utils/reqUrl');
+var dateTimePicker = require('../../utils/dateTimePicker.js');
+var imgArr = [];
 Page({
 
   /**
@@ -9,130 +11,159 @@ Page({
     cartArr: [{
       title: "小程序跳转"
     }],
-    inputValue: '',
-    phone:true
+    inputText:true,
+    img_url: [],
+    productInfo: [],
+    dateTimeArray1: null,
+    dateTime1: null,
+    startYear: 2019,
+    endYear: 2050,
+    data_times:0
   },
-  // 手机号
-  bindKeyInput: function(e) {
-    this.setData({
-      inputValue: e.detail.value
-    })
-    let inputValue = e.detail.value;
-    if (inputValue.length == 11){
-      this.setData({
-        phone:false
-      })
-    }else{
-      this.setData({
-        phone: true
-      })
-    }
-  },
-  // 选择logo
-  chooseImage: function() {
+  
+
+  // 奖品图片
+  // 点击选取照片
+  chooseImage: function () {
     var that = this;
+    let counts = that.data.img_url.length;
+    let count = 9 - counts;
     wx.chooseImage({
-      count: 1,
-      success: function(res) {
-        let tempfile = res.tempFilePaths;
-        console.log(tempfile[0]);
-        const tempFilePaths = tempfile.toString();
-        that.setData({
-          tempFilePaths: tempFilePaths
-        })
+      count: count,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        console.log(res);
+        var len = that.data.imgCount + res.tempFilePaths.length;
+        if (res.tempFilePaths.length > 0) {
+          if (len == 9) {
+            that.setData({
+              hideAdd: 1
+            })
+          } else {
+            that.setData({
+              hideAdd: 0
+            })
+          }
+          // 把每次选择的图push到数组
+          // let img_url = that.data.img_url;
+          for (let i = 0; i < res.tempFilePaths.length; i++) {
+            imgArr.push(res.tempFilePaths[i])
+          }
+          that.setData({
+            imgCount: len,
+            img_url: imgArr,
+            tempFiles: res.tempFiles
+          })
+        }
       },
     })
   },
+
+
   // 提交信息
   formSubmit(e){
-    let inputValue = this.data.inputValue;
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    if (!myreg.test(inputValue)) {
-      wx.showToast({
-        title: '手机号有误！',
-        icon: 'none',
-        duration: 1500
+    let values = e.detail.value;
+    let that = this;
+    that.setData({
+      values: values
+    })
+    // console.log(values);
+    
+    if (values.path != "" && values.appid == ""){
+      wx.showModal({
+        title: '提示',
+        content: '请填写跳转路径和appid',
+        showCancel: false,
+        success: function (res) { }
+      })
+    } else if (values.path == "" && values.appid != ""){
+      wx.showModal({
+        title: '提示',
+        content: '请填写跳转路径和appid',
+        showCancel: false,
+        success: function (res) { }
       })
     }else{
-      wx.showLoading({
-        title: '提交中...',
-        mash: true
-      })
-      // 小程序
-      if (e.detail.value.is_miniprogram == ''){
-        e.detail.value.is_miniprogram = 0;
-      }else{
-        e.detail.value.is_miniprogram = 1;        
-      }
-
-      let values = e.detail.value;
-      let that = this;
-      if (this.data.tempFilePaths != undefined){
-        console.log('图片');
-        let sponsor = this.data.tempFilePaths;
-        wx.uploadFile({
-          url: reqUrl + 'upload',
-          method:"POST",
-          filePath: sponsor,
-          formData:{
-            path: 'sponsor'
-          },
-          name: 'file',
-          header: {
-            token: wx.getStorageSync('token'),
-            'content-type': 'multipart/form-data'
-          },
-          success:res =>{
-            const data = res.data;
-            let dataList = JSON.parse(data);
-            if (dataList.error_code == 0){
-              let msglist = dataList.msg;
-              if (!values.hasOwnProperty("logo")) {
-                values['logo'] = msglist;
-              }
-
-              that.setData({
-                values: values
-              })
-
-              that.sponsor();
-
-            }else{
-              wx.showToast({
-                title: dataList.msg,
-                icon: 'none',
-                mask: true
-              })
-            }
-          },
-          fail:function(res){},
-          complete:function(res){},
+      if (values.lottery_time != "" && values.name != "" && values.product_name != "" && values.product_num != "" && that.data.data_times != 0 && imgArr.length != 0){
+        wx.showLoading({
+          title: '提交中...',
+          mash: true
         })
-      }else{
-        console.log('没有图片');
-       
-        if (!values.hasOwnProperty("logo")){
-          let tempFilePaths = this.data.tempFilePaths;
-          values['logo'] = tempFilePaths;
+
+        if (imgArr.length != 0) {
+          var uploadImgCount = 0;
+          for (let i = 0; i < imgArr.length; i++) {
+            var sponsor = imgArr[i];
+            wx.uploadFile({
+              url: reqUrl + 'upload',
+              method: 'POST',
+              filePath: sponsor,
+              formData: {
+                path: 'sponsor'
+              },
+              name: 'file',
+              header: {
+                token: wx.getStorageSync('token'),
+                'content-type': 'multipart/form-data'
+              },
+              success: res => {
+                uploadImgCount++;
+                var data = JSON.parse(res.data);
+                console.log(data);
+                var productInfo = that.data.productInfo;
+                productInfo.push(data.msg)
+                that.setData({
+                  productInfo: productInfo
+                })
+                if (uploadImgCount == imgArr.length) {
+                  // wx.hideLoading();
+
+                  that.sponsor();
+                }
+              },
+              fail: function (res) {
+                wx.hideToast();
+                wx.showModal({
+                  title: res.data.msg,
+                  content: '上传图片失败',
+                  showCancel: false,
+                  success: function (res) { }
+                })
+                that.setData({
+                  missionBtn: true
+                })
+              },
+              complete: function (res) { },
+            })
+          }
+        } else {
+          // wx.hideLoading();
+          // that.sponsor();
         }
-        this.setData({
-          values: values
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: '请完善商品信息',
+          showCancel: false,
+          success: function (res) { }
         })
-
-        this.sponsor();
       }
-
-      // console.log('form发生了submit事件，携带数据为：', e.detail.value);
     }
+    
+      // console.log('form发生了submit事件，携带数据为：', e.detail.value);
   },
-
+  // 上传信息
   sponsor:function(){
+    var that = this;
+    let dataValue = this.data.values;
+    dataValue.imgArr = that.data.productInfo;
     wx.request({
       url: reqUrl + 'addSponsor',
       header: {
         token: wx.getStorageSync('token')
       },
-      data: this.data.values,
+      data: dataValue,
       method: 'POST',
       dataType: 'json',
       responseType: 'text',
@@ -141,7 +172,7 @@ Page({
         if (res.data.error_code == 0){
           wx.showModal({
             title: '提交成功',
-            content: '我们的客服人员尽快与您联系',
+            content: '',
             showCancel: false,
             confirmColor:'#FF1946',
             success(res){
@@ -171,7 +202,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    imgArr = [];
+    // 获取完整的年月日 时分秒，以及默认显示的数组
+    var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    // 精确到分的处理，将数组的秒去掉
+    var lastArray = obj1.dateTimeArray.pop();
+    var lastTime = obj1.dateTime.pop();
+    this.setData({
+      dateTimeArray1: obj1.dateTimeArray,
+      dateTime1: obj1.dateTime
+    });
+  },
+  
+  changeDateTime1(e) {
+    this.setData({
+      data_times:1,
+      dateTime1: e.detail.value
+    });
+  },
+
+  changeDateTimeColumn1(e) {
+    console.log(e.detail.value)
+    var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({
+      dateTimeArray1: dateArr,
+      dateTime1: arr
+    });
   },
 
   /**

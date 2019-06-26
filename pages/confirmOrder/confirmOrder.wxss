@@ -67,11 +67,14 @@
   margin-right: 15rpx;
   border-radius: 4rpx;
 } 
+.detail-banner{
+  padding: 0 20rpx;
+}
 .detail-banner image{
   display: block;
-  width: 690rpx;
-  height: 180rpx;
-  margin: 0 auto;
+  width: 100%;
+  height: 342rpx;
+  /* margin: 0 auto; */
   border-radius: 20rpx;
 }
 .detail-style{

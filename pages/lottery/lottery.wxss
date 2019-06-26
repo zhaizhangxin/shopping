@@ -6,6 +6,9 @@ page{
   background: #f5f5f5;
 }
 
+
+
+
 .section{
   padding: 24rpx 30rpx;
   margin: 20rpx 30rpx;
@@ -54,8 +57,16 @@ page{
   border-bottom: 4rpx solid #f5f5f5;
 }
 .select{
-  display: flex;
+  /* display: flex; */
 }
+
+.tui-picker-detail{
+  display: flex;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #333;
+}
+
 .selectText{
   font-size:28rpx;
   font-family:MicrosoftYaHei;
@@ -131,4 +142,44 @@ radio .wx-radio-input.wx-radio-input-checked::before{
    background: transparent;
    transform:translate(-50%, -50%) scale(1);
    -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+
+
+
+/* 奖品图片 */
+.revieImg{
+  margin-top: 12rpx;
+  display: flex;
+  flex-wrap: wrap;
+  /* max-height: 590rpx;
+  overflow: hidden; */
+}
+.image{
+  margin-left: 18rpx;
+  margin-bottom: 10rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+/* .image:nth-child(2){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.image:nth-child(5){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.image:nth-child(8){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+} */
+.moment_img{
+  width: 100%;
+  height: 100%;
+}
+
+.placeholder{
+  font-size:24px;
+  font-family:MicrosoftYaHei;
+  color: #c4c4c4;
 }

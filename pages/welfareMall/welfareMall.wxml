@@ -1,108 +1,133 @@
 <!--pages/welfareMall/welfareMall.wxml-->
-<view class='content'>
-  <image src='../../image/dhsc_banner@2x.png' class='headImg'></image>
-  <!-- 兑换记录 -->
-  <view class='headCont'>
-    <view class='flexCont' bindtap='redemptionRecord'>
-      <image class='flexImg' src='../../image/dhsc_dhjl@2x.png'></image>
-      <view class='numText'>
-        <text class='contNum'>{{conversionRecordCount}}个</text>
-        <text class='contText'>兑换记录</text>
+<view class='container'>
+
+  <view class='header'>
+    <image src='../../image/qd_bg@2x.png' class='headBackImg'></image>
+    <!-- 未签到 -->
+    <block wx:if="{{signData.status == 0}}">
+      <view class='headSign' bindtap='signTop'>
+        <image src='../../image/qd_bt@2x.png' class='signImg'></image>
+        <image src='../../image/ljqd@2x.png' class='signText'></image>
       </view>
-    </view>
-    <view class='flexCont' bindtap='welfare'>
-      <image class='flexImg' src='../../image/dhsc_hqjf@2x.png'></image>
-      <view class='numTexts'>
-        <view class='contIcon'>
-          <image src='../../image/dhsc_jf@2x.png' class='headIcon'></image>
-          <text class='cont_Num'>{{integral}}</text>
+    </block>
+    <block wx:else>
+      <!-- 已签到 -->
+      <view class='headSign singKy'>
+        <text class='signJf'>可用积分</text>
+        <text class='signNum'>{{integral}}</text>
+      </view>
+    </block>
+
+    <view class='singer'>
+      <view class='sign_lx'>
+        <text class='singLx_text'>已连续签到</text>
+        <text class='singNum'>{{signData.signNum}}<text>天</text></text>
+      </view>
+      <view class='line'></view>
+      <view class='signCont'>
+        <view class='signContList' wx:for="{{signData.signData}}" wx:key="{{index}}">
+          <text class='signTime'>{{item.date}}</text>
+          <block wx:if="{{item.status == 0}}">
+            <view class='signView'>+{{item.integral}}</view>
+          </block>
+          <block wx:else>
+            <image class='signIcon' src='../../image/qd_y1@2x.png'></image>
+          </block>
         </view>
-        <text class='contText'>获取积分</text>
       </view>
     </view>
-    <view class='flexCont' bindtap='getting_Cash'>
-      <image class='flexImg' src='../../image/dhsc_hqxj@2x.png'></image>
-      <view class='numTexts'>
-        <view class='contIcon'>
-          <image src='../../image/dhsc_xjcopy@2x.png' class='headIcon'></image>
-          <text class='conts_Num'>{{balance}}</text>
-        </view>
-        <text class='contText'>获取现金</text>
-      </view>
-    </view>
-    <view class='gettingCash' wx:if="{{getingCash}}">
-      <!-- 获取现金弹窗(去领钱) -->
-      <block wx:if="{{balanceNotGet == 0}}">
-        <text class='getting'>你还有0个未领取的现金红包</text>
-        <text class='gettingText'>每次抽奖后，开奖时都会得到</text>
-        <text class='gettingText'>随机现金红包1个</text>
-        <text class='gettingText'>现金可提现，可兑换商品</text>
-        <view class='gettingButs' bindtap='index'>去抽奖</view>
-      </block>
-       <!-- 获取现金弹窗(去赚钱) -->
-      <block wx:else>
-        <text class='getting'>你还有{{balanceNotGet}}个未领取的现金红包</text>
-        <text class='gettingText'>每次抽奖后，开奖时都会得到</text>
-        <text class='gettingText'>随机现金红包1个</text>
-        <text class='gettingText'>现金可提现，可兑换商品</text>
-        <view class='gettingBut' bindtap='winningRecord'>去领钱</view>
-      </block>
-    </view>
-    <view class='gettingCashMask' wx:if="{{getingCash}}" bindtap='exitGetting'></view>
   </view>
 
-  <!-- 限时兑换 -->
-  <block wx:if="{{timeLimit != []}}">
-    <view class='redemption'>
-      <view class='redemp'>
-        <text class='redempTime'>{{timeLimit.welfare_name}}  <text class='times'>{{countDown}}</text></text>
-        <text class='redempText'>低价秒换  机不可失</text>
+  <view class='content'>
+    <!-- 做任务赚积分 -->
+    <block wx:if="{{earn != []}}">
+      <view class='contEarn'>
+        <image class='contEarnImg' src='../../image/qd_bt_1@2x.png'></image>
+        <view class='earnCont'>
+          <view class='contShare' wx:for="{{earn}}" wx:key="{{index}}">
+            <view class='contList'>
+              <block wx:if="{{index == 3}}">
+                <text class='contText textColor'>{{index+1}}.{{item.title}}</text>
+              </block>
+              <block wx:else>
+                <text class='contText'>{{index+1}}.{{item.title}}</text>
+              </block>
+              <text class='contColor'>{{item.integral}}</text>
+            </view>
+            <!-- 分享小程序 -->
+            <block wx:if="{{index == 0}}">
+              <block wx:if="{{item.status == 1}}">
+                <button open-type='share' class='contBtn' data-id='60' bindtap='shareApp'>{{item.context}}</button>
+              </block>
+              <block wx:else>
+                <view class='contBtn pointBtnC'>已完成</view>
+              </block>
+            </block>
+            <!-- 点击抽奖 -->
+            <block wx:if="{{index == 1}}">
+              <block wx:if="{{item.status == 1}}">
+                <view class='contBtn' bindtap='shareIndex'>{{item.context}}</view>
+              </block>
+              <block wx:else>
+                <view class='contBtn pointBtnC'>已完成</view>
+              </block>
+            </block>
+            <!-- 分享抽奖 -->
+            <block wx:if="{{index == 2}}">
+              <block wx:if="{{item.status == 1}}">
+                <view class='contBtn' bindtap='shareIndex'>{{item.context}}</view>
+              </block>
+              <block wx:else>
+                <view class='contBtn pointBtnC'>已完成</view>
+              </block>
+            </block>
+            <!-- 关注公众号 -->
+            <block wx:if="{{index == 3}}">
+              <block wx:if="{{item.status == 1}}">
+                <view class='contBtn' catchtouchmove="ture" bindtap='pointMove'>{{item.context}}</view>
+              </block>
+              <block wx:else>
+                <view class='contBtn pointBtnC'>已完成</view>
+              </block>
+            </block>
+          </view>
+        </view>
       </view>
-      <block wx:for="{{timeLimit.data}}" wx:key="{{index}}">
-        <view class='rempCont' bindtap='productDetails' data-id="{{item.id}}">
-          <image class='rempImg' src='{{item.img_url}}'></image>
-          <view class='rempRight'>
-            <text class='shopName'>免费抽奖:{{item.title}}</text>
-            <view class='integral'>
-              <image src='../../image/dhsc_jf@2x.png' class='integralIcon'></image>
-              <text class='integralText'>积分兑换</text>
-              <text class='integralNum'>{{item.integral}}积分</text>
+    </block>
+    <!-- 关注公众号 -->
+    <view class='mask' catchtouchmove="ture" wx:if="{{pointMask}}" bindtap='exitPoint'></view>
+    <view class='pointMask' catchtouchmove="ture" wx:if="{{pointMask}}">
+      <image src='{{gif}}' class='maskImg'></image>
+      <button class='maskBth' open-type='contact' bindtap='earnPoint'>关注公众号</button>
+      <text class='maskText'>点击关注后，请如上图操作关注公众号</text>
+    </view>
+    <!-- 积分兑换 -->
+    <view class='contPoints'>
+      <image src='../../image/qd_bt_2@2x.png' class='pointsImg'></image>
+      <block wx:if="{{product == []}}">
+        <view class='contPointText'>积分商城敬请期待</view>
+      </block>
+      <block wx:else>
+        <view class='point_cont'>
+          <view class='point_list' wx:for="{{product}}" wx:key="{{index}}">
+            <image src='{{item.img_url}}' class='pointImg' mode='aspectFill'></image>
+            <view class='pointPor'>
+              <view class='pointInfo'>
+                <text class='pointName'>{{item.title}}</text>
+                <text class='pointNum'>{{item.integral}}积分</text>
+              </view>
+              <block wx:if="{{item.product_num == 0}}">
+                <view class='contBtn pointBtnColor'>已兑完</view>
+              </block>
+              <block wx:else>
+                <view class='contBtn pointBtn' bindtap='productDetails' data-id="{{item.id}}">马上兑</view>
+              </block>
             </view>
-            <view class='integral'>
-              <image src='../../image/dhsc_xjcopy@2x.png' class='integralIcon'></image>
-              <text class='integralText'>现金兑换</text>
-              <text class='integralNum'>{{item.balance}}元</text>
-            </view>
-            <text class='redeemNow'>立即兑换</text>
           </view>
         </view>
       </block>
     </view>
-  </block>
 
-  <!-- 大家都在换 -->
-  <block wx:if="{{hot != []}}">
-    <view class='prizeRedemption'>
-      <text class='prizeText'>{{hot.welfare_name}}</text>
-      <view class='redemption_content'>
-        <block wx:for="{{hot.data}}" wx:key="{{index}}">
-          <view class='prizeCont' bindtap='productDetails' data-id="{{item.id}}">
-            <image class='prizeImg' src='{{item.img_url}}'></image>
-            <text class='prize_text'>免费抽奖：{{item.title}}</text>
-            <view class='redamption_prize'>
-              <view class='redamotion_remp'>
-                <image class='integralIcon' src='../../image/dhsc_jf@2x.png'></image>
-                <text class='integralNum'>{{item.integral}}积分</text>
-              </view> 
-              <view class='redamotion_remps'>
-                <image class='integralIcon' src='../../image/dhsc_xjcopy@2x.png'></image>
-                <text class='integralNum'>{{item.balance}}元</text>
-              </view> 
-            </view>
-          </view>
-        </block>
-      </view>
-    </view>
-  </block>
+  </view>
 
 </view>

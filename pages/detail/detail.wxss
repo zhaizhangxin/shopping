@@ -97,6 +97,7 @@
   display: flex;
   justify-content: space-between;
   background: #fff;
+  border-radius: 0rpx 0rpx 20rpx 20rpx;
 }
 .names{
   font-size:28rpx;
@@ -116,48 +117,64 @@
 
 /* 待开奖 */
 .swiper_Inter{
-  margin-top: 54rpx;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 14%;
   position: relative;
-  height: 270rpx;
+  margin-bottom: 40px;
 }
 .swiper{
   margin-top: 66rpx;
   height: 240rpx;
 }
 .swiperEnve{
-  display: flex;
+  /* display: flex; */
 }
 .awarded{
-  /* margin: auto; */
-  margin-left: 74rpx;
-  margin-right: 18rpx;
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 50%;
-  background: #EE6665;
+  position: relative;
+  margin: auto;
+  /* margin-left: 74rpx;
+  margin-right: 18rpx; */
+  width: 204rpx;
+  height: 204rpx;
+  /* border-radius: 50%;
+  background: #FF646A;
   transform: scale(0.9);
-  box-shadow: 0 10rpx 14rpx #FFAABB;
+  box-shadow: 0 10rpx 14rpx #FFAABB; */
+}
+.awarded image{
+  width: 100%;
+  height: 100%;
 }
 .awardedText{
+  position: absolute;
+  top: 0;
+  width: 100%;
   /* padding-top: 60rpx; */
-  font-size:28rpx;
-  font-family:MicrosoftYaHei-Bold;
-  font-weight:bold;
+  font-size:32rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
   line-height: 180rpx;
   color: #fff;
   display: block;
   text-align: center;
 }
 .inviteFriends{
+  margin: auto;
   padding: 0;
-  margin-left: 30rpx;
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 50%;
+  /* margin-left: 30rpx; */
+  width: 204rpx;
+  height: 204rpx;
+  /* border-radius: 50%;
   background:linear-gradient(327deg,rgba(147,104,242,1) 0%,rgba(255,158,244,1) 100%);
   transform: scale(0.9);
   line-height: 40rpx;
-  box-shadow: 0 10rpx 14rpx #CCBFDC;
+  box-shadow: 0 10rpx 14rpx #CCBFDC; */
+}
+.inviteFriends image{
+  background: #fff;
+  width: 100%;
+  height: 100%;
 }
 .invite_friend{
   background: #B5B5B5;
@@ -176,14 +193,7 @@
   display: block;
   text-align: center;
 }
-.inviteText{
-  /* padding: 54rpx 10rpx;
-  font-size:28rpx;
-  font-family:MicrosoftYaHei-Medium;
-  font-weight:bold;
-  color: #fff;
-  display: block;
-  text-align: center;  */
+/* .inviteText{
   font-size:28rpx;
   font-family:MicrosoftYaHei-Bold;
   font-weight:bold;
@@ -191,44 +201,120 @@
   color: #fff;
   display: block;
   text-align: center;
+} */
 
-}
 
-
-.swiperIcon{
+/* .swiperIcon{
   margin: auto 0;
   display: flex;
   justify-content: space-between;
   width: 16%;
 }
 .swiperIcon view{
-  /* margin-left: 40rpx; */
   width: 20rpx;
   height: 20rpx;
   border-radius: 50%;
   background: #EE6665;
-}
+} */
 .swiperInter{
-  position: absolute;
-  bottom: 40rpx;
-  left: 36%;
+  /* position: absolute; */
+  /* bottom: 40rpx;
+  left: 36%; */
   font-size:26rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
   color: #666666;
+  text-align: center;
+  display: block;
+}
+
+
+/* 复制链接 */
+.detailLink{
+  margin-top: 198rpx;
+  padding: 26rpx 0 30rpx 0;
+  background: #fff;
+}
+.linkText{
+  display: flex;
+  font-size:32rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #5D6977;
+}
+.line{
+  margin-right: 10rpx;
+  width:15rpx;
+  height:40rpx;
+  background:linear-gradient(319deg,rgba(248,51,49,1) 0%,rgba(254,114,112,1) 100%);
+  border-radius:0rpx 5rpx 5rpx 0rpx;
+}
+
+
+
+.detailCont{
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 22rpx 0 26rpx;
+}
+.links{
+  padding: 22rpx 30rpx;
+  background: #F2F2F2;
+  border-radius: 6rpx;
+  font-size:20rpx;
+  font-family:Helvetica;
+  color:rgba(102,102,102,1);
+  width: 62%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.copyLink{
+  padding: 12rpx 30rpx;
+  color: #fff;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  background: #FF646A;
+  border-radius: 6rpx;
 }
 
 
 /* 立即开抢 */
+.collSponsor{
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 300rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #fff;
+}
+.collSponsor image{
+  width: 100%;
+  height: 100%;
+}
+.sponsorText{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
+
 .envelope{
-  margin: 0 30rpx;
-  margin-top: 220rpx;
+  position: relative;
+  margin-top: 20rpx;
   background: #fff;
   overflow: hidden;
-  border-radius: 20rpx;
 }
 .envel{
-  padding: 60rpx 264rpx;
+  /* padding: 60rpx 264rpx; */
+  margin-top: 118rpx;
+  margin-bottom: 70rpx;
 }
 
 .envalColl{
@@ -242,22 +328,21 @@
 
 }
 .collText{
-  padding-top: 60rpx;
-  font-size:28rpx;
-  font-family:MicrosoftYaHei-Bold;
-  font-weight:bold;
+  line-height: 180rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
   color: #fff;
   display: block;
   text-align: center;
 }
-.envalText{
-  /* margin-top: 98rpx; */
+/* .envalText{
   font-size:24rpx;
   font-family:MicrosoftYaHei;
   color: #fff;
   display: block;
   text-align: center;
-}
+} */
 .consumption{
   margin-top: 20rpx;
   display: block;
@@ -290,10 +375,10 @@
 }
 .envalBg{
   position: fixed;
-  /* left: 0; */
-  top: 8%;
-  width: 100%;
-  height: 805rpx;
+  left: 6%;
+  top: 12%;
+  width: 650rpx;
+  height: 750rpx;
 }
 .evaleImg{
   width: 100%;
@@ -302,26 +387,44 @@
 .welfare{
   position: absolute;
   top: 25%;
-  left: 14%;
+  /* left: 14%; */
+  width: 100%;
 }
-.welfareImg{
+.welf_time{
+  margin-top: 160rpx;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  text-align: center;
+}
+.welf_time text{
+  display: block;
+}
+/* .welfareImg{
   width: 530rpx;
   height: 250rpx;
   border-radius: 0 0 10rpx 10rpx;
-}
+} */
 .welf{
-  margin-top: 70rpx;
+  margin-top: 6%;
+  margin-left: 26%;
+  display: flex;
 }
-.welf text{
-  font-size:36rpx;
+.welf image{
+  margin-top: 4rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.welfareName{
+  margin-left: 30rpx;
+  font-size:34rpx;
   font-family:MicrosoftYaHei-Bold;
   font-weight:bold;
-  color: #FEE9AB;
-  text-align: center;
+  color: #BE8C54;
 }
-.welfareName{
-  display: block;
-}
+
+
 .welfareText{
   margin-top: 10rpx;
   display: block;
@@ -332,20 +435,20 @@
   position: relative;
 }
 .enval_welf{
-  margin-left: 10rpx;
-  width: 480rpx;
-  height: 80rpx;
+  margin-left: 12%;
+  width: 478rpx;
+  height: 128rpx;
 }
 .enval_text{
   position: absolute;
-  left: 0;
+  left: 0; 
   width: 100%;
   height: 100%;
-  line-height: 66rpx;
+  line-height: 128rpx;
   text-align: center;
   font-size:32rpx;
   font-family:MicrosoftYaHei;
-  color: #513A2E;
+  color: #BE8C54;
 }
 .exitMask{
   position:absolute;
@@ -518,24 +621,18 @@
 
 /* 详情 */
 .details{
-  margin: 30rpx; 
-  /* margin-top: 30rpx; */
-  margin-bottom: 88rpx;
-  padding: 30rpx 24rpx;
+  margin:20rpx 0 88rpx 0;
   background: #fff;
-  border-radius: 20rpx;
+  overflow: hidden;
 }
 .detailsText{
-  margin-bottom: 30rpx;
-  font-size:30rpx;
-  font-family:PingFangSC-Medium;
-  font-weight:500;
-  color: #5D6977;
-  display: block;
-  text-align: center;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+  height: 40rpx;
 }
 .details image{
   width: 100%;
+  display: block;
 }
 
 /* 底部悬浮 */

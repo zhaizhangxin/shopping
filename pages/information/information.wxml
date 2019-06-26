@@ -1,25 +1,44 @@
-<!--pages/information/information.wxml-->
+ <!--pages/information/information.wxml-->
 <view class='content'>
+  <block wx:if="{{msgList.is_content == 0}}">
+    <view class='infor_Text'>暂无信息，请创建</view>
+  </block>
+  <block wx:else>
+  
   <view class='inforCont'>
-    <view class='inforText'>联系方式</view>
-    <view class='contTexts'>{{msgList.mobile}}</view>
+    <view class='inforText'>奖品名称</view>
+    <view class='contTexts'>{{msgList.product_name}}</view>
   </view>
   <view class='mationCont'>
     <view class='mation'>
-      <view class='inforText'>赞助商名称</view>
-      <view class='contTexts'>{{msgList.name}}</view>
+      <view class='inforText'>奖品数量</view>
+      <view class='contTexts'>{{msgList.product_num}}</view>
+    </view>
+    <view class='mation mation_img'>
+      <view class='inforText'>奖品图片</view>
+      <view class='inforImg_main'>
+        <view class='inforImg' wx:for="{{msgList.img_arr}}" wx:key="{{index}}">
+          <image src='{{item.detail_img_url}}' mode='aspectFill'></image>
+        </view>
+      </view>
+     
     </view>
     <view class='mation'>
-      <view class='inforText'>logo</view>
-      <image class='inforImg' src='{{msgList.logo}}'></image>
+      <view class='inforText'>是否小程序跳转</view>
+      <view class='contText'>{{msgList.path}}</view>
     </view>
     <view class='mation'>
-      <view class='inforText'>宣传（slogan）</view>
-      <view class='contText'>{{msgList.slogan}}</view>
+      <view class='inforText'>APPID</view>
+      <view class='contText'>{{msgList.appid}}</view>
     </view>
     <view class='mation'>
-      <view class='inforText'>详细描述</view>
-      <view class='contText'>{{msgList.detail}}</view>
+      <view class='inforText'>开奖时间</view>
+      <view class='contText'>{{msgList.lottery_time}}</view>
+    </view>
+    <view class='mation'>
+      <view class='inforText'>赞助商</view>
+      <view class='contText'>{{msgList.name}}</view>
     </view>
   </view>
+  </block>
 </view>

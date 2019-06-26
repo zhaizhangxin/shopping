@@ -13,84 +13,47 @@ page{
 }
 /* 头部 */
 .contDetail{
-  padding: 30rpx;
-  margin-top: -50rpx;
-  margin-left: 30rpx;
+  padding: 22rpx 30rpx;
   background: #fff;
-  border-radius: 20rpx;
-  width: 630rpx;
-}
-.detailName{
-  display: flex;
-  justify-content: space-between;
 }
 .shopName{
-  font-size:32rpx;
-  font-family:MicrosoftYaHei;
-  color: #5D6977;
-}
-.marketPrice{
-  font-size:28rpx;
+  font-size:36rpx;
   font-family:PingFangSC-Medium;
   font-weight:500;
-  color: #FF646A;
-}
-.numbers{
-  font-size:24rpx;
-  font-family:MicrosoftYaHei;
-  color: #999;
-  display: block;
+  color: #5D6977;
 }
 .product_details{
   display: flex;
   margin-top: 20rpx;
 }
-.product_name{
-  display: flex;
-}
 .product_icon{
-  margin-top: 6rpx;
-  width: 20rpx;
-  height: 20rpx;
-}
-.product_prod{
-  margin-left: 10rpx;
-  font-size:22rpx;
-  font-family:MicrosoftYaHei;
-  color: #999;
+  /* margin-top: 6rpx; */
+  width: 50rpx;
+  height: 50rpx;
 }
 .product_num{
   margin-left: 10rpx;  
-  font-size:22rpx;
-  font-family:MicrosoftYaHei-Bold;
-  font-weight:bold;
-  color: #FF646A;
-}
-.products_name{
-  display: flex;
-  margin-left: 60rpx;
+  font-size:36rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color: #D48031;
 }
 
 /* 商品详情 */
 .details{
-  margin: 20rpx 30rpx 90rpx 30rpx;
-  margin-top: 20rpx;
-  border-radius: 20rpx;
+  margin: 20rpx 0 88rpx 0;
   background: #fff;
 }
-.details_text{
-  padding: 30rpx 0;
-  text-align: center;
-  display: block;
-  font-size:30rpx;
-  font-family:PingFangSC-Medium;
-  font-weight:500;
-  color: #5D6977;
-}
+
 .details image{
   width: 100%;
 }
-
+.details_text{
+  padding: 30rpx 0;
+  display: block;
+  width: 273rpx;
+  height: 40rpx;
+}
 /* 底部悬浮 */
 .footer{
   position: fixed;
@@ -101,9 +64,22 @@ page{
   line-height: 88rpx;
 }
 .footer_fot{
-  display: flex;
+  background: #EE6665;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  text-align: center;
 }
-.footer_prod{
+.footer_prods{
+  background: #CCC;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  text-align: center;
+}
+
+
+/* .footer_prod{
   width: 450rpx;
   background: #EE6665;
   font-size:28rpx;
@@ -119,14 +95,7 @@ page{
   color: #666;
   text-align: center;
 }
-.footer_prods{
-  width: 450rpx;
-  background: #CCC;
-  font-size:28rpx;
-  font-family:MicrosoftYaHei;
-  color: #fff;
-  text-align: center;
-}
+
 .footer_texts{
   width: 300rpx;
   font-size:28rpx;
@@ -134,7 +103,7 @@ page{
   font-family:MicrosoftYaHei;
   color: #666;
   text-align: center;
-}
+} */
 
 /* 积分兑换弹框 */
 .redeemGoodsMask{
@@ -183,7 +152,7 @@ page{
   font-size:32rpx;
   font-family:MicrosoftYaHei;
   color: #fff;
-  width: 200rpx;
+  width: 250rpx;
   height: 70rpx;
   text-align: center;
   line-height: 70rpx;
@@ -194,7 +163,7 @@ page{
   font-size:32rpx;
   font-family:MicrosoftYaHei;
   color: #666;
-  width: 200rpx;
+  width: 250rpx;
   height: 70rpx;
   text-align: center;
   line-height: 70rpx;

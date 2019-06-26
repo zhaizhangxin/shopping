@@ -110,7 +110,7 @@ Page({
           let to_price = formatTime.toMoney(price.price);
           let to_balance = formatTime.toMoney(price.balance);
 
-          console.log(to_price);
+          // console.log(to_price);
 
 
           this.setData({

@@ -26,7 +26,7 @@ App({
           wx.setStorageSync('code', res.code);
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
-            url: reqUrl + 'go_token',
+            url: reqUrl + 'token',
             data: {
               code: res.code
             },

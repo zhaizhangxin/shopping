@@ -50,6 +50,7 @@ Page({
             msgList:res.data.msg,
             [lottery_time]:datas
           })
+          
         }else{
           wx.showToast({
             title: res.data.msg,

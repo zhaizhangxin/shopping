@@ -30,10 +30,10 @@
                 <text class='fillTimes'>已中奖</text>
               </view>
             </view>
-            <view class='headNum'>
+            <!-- <view class='headNum'>
               <image src='../../image/xq_jf@2x.png' class='headIcon'></image>
               <text>{{activity.activityPeople}}人在抢</text>
-            </view>
+            </view> -->
           </view>
         </block>
       </block>
@@ -47,23 +47,39 @@
               <text class='fillTimes'>{{activityTimes}} 自动开奖</text>
             </view>
           </view>
-          <view class='headNum'>
+          <!-- <view class='headNum'>
             <image src='../../image/xq_jf@2x.png' class='headIcon'></image>
             <text>{{activity.activityPeople}}人在抢</text>
-          </view>
+          </view> -->
         </view>
       </block>
       
       <view class='headName'>
         <text class='names'>免费抽奖:{{activity.productName}}</text>
-        <text class='money'><text class='moneys'>￥</text>{{activity.price}}</text>
+        <!-- <text class='money'><text class='moneys'>￥</text>{{activity.price}}</text> -->
       </view>
     </view>
     
   </view>
   
+  <!-- 复制链接 -->
+  <block wx:if="{{activity.href != ''}}">
+    <view class='detailLink'>
+      <view class='linkText'><view class='line'></view>复制链接到浏览器领取更多福利</view>
+      <view class='detailCont'>
+        <view class='links'>{{activity.href}}</view>
+        <view class='copyLink' bindtap='detaGroup' data-href="{{activity.href}}">一键复制</view>
+      </view>
+    </view>
+  </block>
+
   <!-- 立即开抢 -->
   <view class='envelope'>
+    <!-- 赞助商名称 -->
+    <view class='collSponsor'>
+      <image src='../../image/xq_zzs@2x.png'></image >
+      <view class='sponsorText'>{{activity.adName}}赞助</view>
+    </view>
     <!-- 中奖者/未中奖者 -->
     <block wx:if="{{is_luck == 0}}">
       <view class='envel'>
@@ -78,70 +94,53 @@
         <view class='envel'>
           <form report-submit='true' bindsubmit='envalColl' wx:if="{{report}}">
             <button form-type='submit' class='envalColl'>
-              <text class='collText'>立即开抢</text>
-              <text class='envalText'>领红包</text>
+              <text class='collText'>立即抽奖</text>
+              <!-- <text class='envalText'>领红包</text> -->
             </button>
           </form>
           <button open-type='getUserInfo' class='envalColl' bindgetuserinfo='getUserInfo' wx:else>
-            <text class='collText'>立即开抢</text>
-            <text class='envalText'>领红包</text>
+            <text class='collText'>立即抽奖</text>
+            <!-- <text class='envalText'>领红包</text> -->
           </button>
-          <text class='consumption'>消耗{{activity.activityIntegral}}积分</text>
+          <!-- <text class='consumption'>消耗{{activity.activityIntegral}}积分</text> -->
         </view>
       </block>
       <!-- 待开奖 -->
       <block wx:else>
         <view class='swiper_Inter'>
-          <swiper class='swiper' next-margin='180rpx' previous-margin='180rpx'>
-            <swiper-item>
+
+          <!-- <swiper class='swiper' next-margin='180rpx' previous-margin='180rpx'>
+            <swiper-item> -->
               <view class='swiperEnve'>
                 <view class='awarded'>
+                  <image src='../../image/XMLID_70549_@2x.png'></image>
                   <text class='awardedText'>待开奖</text>
                 </view>
-                <view class='swiperIcon'>
-                  <view></view>
-                  <view></view>
-                </view>
+                <text class='swiperInter'>待开奖{{countDown}}</text>
               </view>
-            </swiper-item>
-            <swiper-item>
+            <!-- </swiper-item>
+            <swiper-item> -->
               <view class='swiperEnve'>
-                <view class='swiperIcon'>
+                <!-- <view class='swiperIcon'>
                   <view></view>
                   <view></view>
-                </view>
+                </view> -->
                 <block wx:if="{{isLottery == 2}}">
-                  <button open-type='share' class='inviteFriends'>
-                    <!-- <text class='inviteTime'>({{countDownNum}}s)</text> -->
-                    <text class='inviteText'>邀请好友助力</text>
+                  <button open-type='share' class='inviteFriends' data-id='50' bindtap='shareApp'>
+                    <!-- <text class='inviteText'>邀请好友助力</text> -->
+                    <image src='../../image/share.gif'></image>
                   </button>
-                  <!-- <block wx:if="{{countDownNum != '0'}}">
-                    <button open-type='share' class='inviteFriends'>
-                      <text class='inviteTime'>({{countDownNum}}s)</text>
-                      <text class='inviteText'>限时邀请好友助力</text>
-                    </button>
-                  </block>
-                  <block wx:else>
-                    <view class='inviteFriends invite_friend'>
-                      <text class='inviteTime'>(0s)</text>
-                      <text class='inviteText'>限时邀请好友助力</text>
-                    </view>
-                  </block> -->
+                <text class='swiperInter'>提高中奖概率</text>
                 </block>
                 <block wx:else>
-                  <button open-type='share' class='inviteFriends'>
-                    <!-- <text class='inviteTime'>({{countDownNum}}s)</text> -->
-                    <text class='inviteText'>邀请好友助力</text>
+                  <button open-type='share' class='inviteFriends' data-id='50' bindtap='shareApp'>
+                    <image src='../../image/share.gif'></image>
                   </button>
-                  <!-- <view class='inviteFriends invite_friend'>
-                    <text class='inviteTime'>(0s)</text>
-                    <text class='inviteText'>限时邀请好友助力</text>
-                  </view> -->
+                <text class='swiperInter'>提高中奖概率</text>
                 </block>
               </view>
-            </swiper-item>
-          </swiper>
-          <text class='swiperInter'>待开奖{{countDown}}</text>
+            <!-- </swiper-item>
+          </swiper> -->
         
         </view>
       </block>
@@ -150,18 +149,23 @@
     
     <!-- 立即开抢弹框 -->
     <view class='envelMask' catchtouchmove="ture" wx:if="{{envalMask}}">
-      <image class='envelBgimg' src='../../image/hb_gx@2x.png' bindtap='exitMask'></image>
+      <!-- <image class='envelBgimg' src='../../image/hb_gx@2x.png' bindtap='exitMask'></image> -->
       <view class='envalBg'>
-        <image class='evaleImg' src='../../image/hb_bg@2x.png'></image>
+        <image class='evaleImg' src='../../image/qdtk_bg@2x.png'></image>
         <view class='welfare'>
-          <image class='welfareImg' src='../../image/home_banner@2x.png'></image>
+          <view class='welf_time'>
+            <text>开奖时间为{{activityTimes}}</text>
+            <text>请留意开奖通知</text>
+          </view>
+          <!-- <image class='welfareImg' src='../../image/home_banner@2x.png'></image> -->
           <view class='welf'>
-            <text class='welfareName'>{{activity.adName}}送你一个福利</text>
-            <text class='welfareText'>大红包，快快领取吧！</text>
+            <image src='../../image/qdtk_xcx@2x.png'></image>
+            <text class='welfareName'>{{activity.adName}}赞助</text>
+            <!-- <text class='welfareText'>大红包，快快领取吧！</text> -->
           </view>
           <view class='envelope_welf' bindtap='click' data-appid="{{activity.adAppId}}" data-path="{{activity.adPath}}">
-            <image class='enval_welf' src='../../image/zy_btx@2x.png'></image>
-            <text class='enval_text'>立即领取</text>
+            <image class='enval_welf' src='../../image/qdcg_bt@2x.png'></image>
+            <text class='enval_text'>获取更多福利</text>
           </view>
         </view>
         <image class='exitMask' src='../../image/hb_gb@2x.png' bindtap='exitMask'></image>
@@ -196,7 +200,7 @@
   </view>
 
   <!-- 赞助商介绍 -->
-  <view class='introduction'>
+  <!-- <view class='introduction'>
     <navigator class='introd' target='miniProgram' app-id='{{activity.adAppId}}' open-type="navigate" path="{{activity.adPath}}" extra-data="">
       <view class='introds'>
         <image src='{{activity.adIcon}}' class='introdImg'></image>
@@ -210,11 +214,11 @@
     <view class='profile'>
       <text>{{activity.adDetail}}</text>
     </view>
-  </view>
+  </view> -->
 
   <!-- 详情 -->
   <view class='details'>
-    <text class='detailsText'>商品详情</text>
+    <image src='../../image/xq_bt3@2x.png' class='detailsText' style=' width: 274rpx;'></image>
     <block wx:for="{{detail}}" wx:key="{{index}}">
       <image src='{{item.detail_img_url}}' mode="widthFix"></image>
     </block>
